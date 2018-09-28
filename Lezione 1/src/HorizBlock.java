@@ -12,14 +12,14 @@ public class HorizBlock extends Block
     @Override
     public void drawAt(int x, int y, CharPixelMap bitmap)
     {
-        
+        left.drawAt(x, y, bitmap);
+        right.drawAt(x+left.width(), y, bitmap);
     }
 
     @Override
     public int width()
     {
         //somma delle lunghezze
-
         return left.width()+right.width();
     }
 
@@ -27,7 +27,6 @@ public class HorizBlock extends Block
     public int height()
     {
         //massimo tra i due
-
         return Math.max(left.height(), right.height());
     }
 }

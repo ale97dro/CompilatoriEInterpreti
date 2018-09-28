@@ -22,7 +22,8 @@ public class VertBlock extends Block
     @Override
     public void drawAt(int x, int y, CharPixelMap bitmap)
     {
-
+        top.drawAt(x, y, bitmap);
+        bottom.drawAt(x, y+top.height(), bitmap);
     }
 
     @Override

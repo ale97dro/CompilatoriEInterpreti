@@ -6,7 +6,7 @@ public class Rect extends Block
     @Override
     public void drawAt(int x, int y, CharPixelMap bitmap)
     {
-
+       bitmap.drawRect(x, y, lunghezza, altezza);
     }
 
     public Rect(int lunghezza, int altezza)
