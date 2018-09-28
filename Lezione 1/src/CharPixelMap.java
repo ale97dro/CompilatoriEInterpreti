@@ -11,7 +11,7 @@ public class CharPixelMap
 
     public CharPixelMap(int w, int h)
     {
-        bitmap=new char[h+1][w+1];
+    bitmap=new char[h+1][w+1]; //+1 altrimenti la matrice è troppo piccola
 
         for(int y=0;y<=h;y++)
         {
