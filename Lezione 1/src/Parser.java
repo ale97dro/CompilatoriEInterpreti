@@ -37,35 +37,71 @@ public class Parser
         token=tokenizer.next();
     }
 
-    public Block expr()
+    public Block expr() throws IllegalAccessException
     {
-        vertExpr();
+        Block b = vertExpr();
 
         next();
 
-        check(token.type(), "EOS");
+        check(token.getType(), Type.EOS);
+
+        return b;
     }
 
     private Block vertExpr()
     {
         Block top = horizExpr();
 
-        while()
+        while(isVertOP())
         {
             next();
             top = new VertBlock(top, horizExpr());
         }
 
+        return top;
+    }
+
+    private boolean isVertOP()
+    {
+        if(token.getType()==Type.VERT)
+            return true;
+
+        return false;
     }
 
     private Block horizExpr()
     {
         Block left = primaryExpr();
 
-        while()
+        while(isHorizOP())
         {
             next();
             left=new HorizBlock(left, primaryExpr());
         }
+
+        return left;
+    }
+
+    private boolean isHorizOP()
+    {
+        if(token.getType()== Type.HORIZ)
+            return true;
+
+        return false;
+    }
+
+    private Block primaryExpr()
+    {
+        return null;
+    }
+
+    private Block rectExpr()
+    {
+        return null;
+    }
+
+    public void check(Type token_type, Type type) throws IllegalAccessException {
+        if(token_type!=type)
+            throw new IllegalAccessException("Wrong type");
     }
 }
