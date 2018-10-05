@@ -15,6 +15,11 @@ public class Rect extends Block
         this.lunghezza=lunghezza;
     }
 
+    public Rect()
+    {
+
+    }
+
     @Override
     public int width()
     {

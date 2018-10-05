@@ -29,30 +29,38 @@ public class Parser
 
     public Parser(Reader reader)
     {
-        tokenizer=new Tokenizer(reader);
+        tokenizer=new Tokenizer(); //mock
+        token=tokenizer.next();
     }
 
+    /**
+     * Ask for next token to Tokenizer
+     */
     private void next()
     {
         token=tokenizer.next();
     }
 
+    /**
+     * Entry point for Parser
+     * @return c
+     * @throws IllegalAccessException c
+     */
     public Block expr() throws IllegalAccessException
     {
         Block b = vertExpr();
 
-        next();
-
-        check(token.getType(), Type.EOS);
+        check(Type.EOS);
+        //next();
 
         return b;
     }
 
-    private Block vertExpr()
+    private Block vertExpr() throws IllegalAccessException
     {
         Block top = horizExpr();
 
-        while(isVertOP())
+        while(isVert())
         {
             next();
             top = new VertBlock(top, horizExpr());
@@ -61,19 +69,20 @@ public class Parser
         return top;
     }
 
-    private boolean isVertOP()
+    /**
+     * Check if the token it's vertical
+     * @return ccc
+     */
+    private boolean isVert()
     {
-        if(token.getType()==Type.VERT)
-            return true;
-
-        return false;
+        return (token.getType()==Type.VERT);
     }
 
-    private Block horizExpr()
+    private Block horizExpr() throws IllegalAccessException
     {
         Block left = primaryExpr();
 
-        while(isHorizOP())
+        while(isHoriz())
         {
             next();
             left=new HorizBlock(left, primaryExpr());
@@ -82,26 +91,63 @@ public class Parser
         return left;
     }
 
-    private boolean isHorizOP()
+    /**
+     * Check if the token it's horizontal
+     * @return a
+     */
+    private boolean isHoriz()
     {
-        if(token.getType()== Type.HORIZ)
-            return true;
 
-        return false;
+        return (token.getType()== Type.HORIZ);
     }
 
-    private Block primaryExpr()
+    private Block primaryExpr() throws IllegalAccessException
     {
-        return null;
+        if(token.getType()==Type.OPEN)
+            return parenExpr();
+        else
+            if(token.getType()==Type.NUM)
+                return rectExpr();
+            else
+                throw new IllegalArgumentException("error");
     }
 
-    private Block rectExpr()
+    private Block parenExpr() throws IllegalAccessException
     {
-        return null;
+        check(Type.OPEN);
+        next();
+        Block b = vertExpr();
+        check(Type.CLOSE);
+        next();
+
+        return b;
     }
 
-    public void check(Type token_type, Type type) throws IllegalAccessException {
-        if(token_type!=type)
-            throw new IllegalAccessException("Wrong type");
+    private Block rectExpr() throws IllegalAccessException
+    {
+        check(Type.NUM);
+        int width=Integer.parseInt(token.getValue());
+        next();
+
+        check(Type.STAR);
+        next();
+
+        check(Type.NUM);
+        int height=Integer.parseInt(token.getValue());
+        next();
+
+        return new Rect(width, height);
+    }
+
+    /**
+     * Check if token_type is the one expected, else throw exception
+     * @param expected a
+     * @throws IllegalAccessException a
+     */
+
+    private void check(Type expected) throws IllegalAccessException
+    {
+        if(token.getType()!=expected)
+            throw new IllegalAccessException("Wrong token type");
     }
 }

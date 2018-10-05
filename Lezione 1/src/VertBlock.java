@@ -1,8 +1,5 @@
 public class VertBlock extends Block
 {
-    private int larghezza;
-    private int altezza;
-
     Block top;
     Block bottom;
 
