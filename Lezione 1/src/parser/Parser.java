@@ -1,18 +1,29 @@
+package parser;
+
+import java.io.IOException;
 import java.io.Reader;
+
+import application.Block;
+import application.HorizBlock;
+import application.Rect;
+import application.VertBlock;
+import tokenizer.Token;
+import tokenizer.Tokenizer;
+import tokenizer.Type;
 
 public class Parser
 {
-    //Parser memorizza un tokenizer per ottenere i token da consumare ma non salva nessun reader al suo interno (ha bisogno di token e non di caratteri)
+    //parser.Parser memorizza un tokenizer per ottenere i token da consumare ma non salva nessun reader al suo interno (ha bisogno di token e non di caratteri)
 
     //il parser mantine anche il token appena letto attraverso il metodo next() del tokenizer
 
-    //Block expr() => parser principale (punto di entrata)
+    //application.Block expr() => parser principale (punto di entrata)
 
     //check controlla il token (terminale) aspettato con quello che arriva
 /*
-    private Block vertExpr()
+    private application.Block vertExpr()
     {
-        Block top = horizExpr();
+        application.Block top = horizExpr();
         while(isVertOp())
         {
             next();
@@ -27,14 +38,19 @@ public class Parser
     private Tokenizer tokenizer;
     private Token token;
 
-    public Parser(Reader reader)
+    public Parser()
     {
-        tokenizer=new Tokenizer(); //mock
+        tokenizer = new Tokenizer(); //mock
+        token = tokenizer.next();
+    }
+
+    public Parser(Reader reader) throws IOException {
+        tokenizer=new Tokenizer(reader);
         token=tokenizer.next();
     }
 
     /**
-     * Ask for next token to Tokenizer
+     * Ask for next token to tokenizer.Tokenizer
      */
     private void next()
     {
@@ -42,7 +58,7 @@ public class Parser
     }
 
     /**
-     * Entry point for Parser
+     * Entry point for parser.Parser
      * @return c
      * @throws IllegalAccessException c
      */
@@ -75,7 +91,7 @@ public class Parser
      */
     private boolean isVert()
     {
-        return (token.getType()==Type.VERT);
+        return (token.getType()== Type.VERT);
     }
 
     private Block horizExpr() throws IllegalAccessException
@@ -103,10 +119,10 @@ public class Parser
 
     private Block primaryExpr() throws IllegalAccessException
     {
-        if(token.getType()==Type.OPEN)
+        if(token.getType()== Type.OPEN)
             return parenExpr();
         else
-            if(token.getType()==Type.NUM)
+            if(token.getType()== Type.NUM)
                 return rectExpr();
             else
                 throw new IllegalArgumentException("error");
@@ -126,14 +142,14 @@ public class Parser
     private Block rectExpr() throws IllegalAccessException
     {
         check(Type.NUM);
-        int width=Integer.parseInt(token.getValue());
+        int width=token.getValue();
         next();
 
         check(Type.STAR);
         next();
 
         check(Type.NUM);
-        int height=Integer.parseInt(token.getValue());
+        int height=token.getValue();
         next();
 
         return new Rect(width, height);

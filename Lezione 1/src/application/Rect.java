@@ -1,3 +1,5 @@
+package application;
+
 public class Rect extends Block
 {
     private int altezza;

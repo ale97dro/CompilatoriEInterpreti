@@ -1,15 +1,17 @@
+package tokenizer;
+
 public class Token
 {
     private Type type;
-    private String value;
+    private int value;
 
-    public Token(String value, Type type)
+    public Token(int value, Type type)
     {
         this.value=value;
         this.type=type;
     }
 
-    public String getValue()
+    public int getValue()
     {
         return value;
     }

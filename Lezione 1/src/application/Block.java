@@ -1,3 +1,5 @@
+package application;
+
 public abstract class Block
 {
     public abstract int width(); //piccolo interprete per il disegno
