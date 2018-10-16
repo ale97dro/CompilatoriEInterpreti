@@ -1,0 +1,23 @@
+/**
+ * Token type
+ */
+public enum Type {
+    NIL, FALSE, TRUE,
+    IF, IFNOT, THEN, ELSE, FI,
+    WHILE, WHILENOT, DO, OD,
+    PRINT, PRINTLN,
+    ID, NUM, STRING,
+    SEMICOLON, COMMA, ARROW,
+    BRACKETOPEN, BRACKETCLOSE,
+    BRACEOPEN, BRACECLOSE,
+    NOT,
+    START, SLASH, PERCENTAGE,
+    PLUS, MINUS,
+    //TODO: aggiungere riga con maggiore uguale e simili
+    EQUAL, NOTEQUAL,
+    AND,
+    OR,
+    ASSIGN, ADDASSIGN, MINUSASSIGN, MULTASSIGN, DIVASSIGN, PERCENTASSIGN,
+    EOS,
+    UNKNOW;
+}
