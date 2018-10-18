@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.io.Reader;
 
 public class Parser
@@ -10,8 +11,7 @@ public class Parser
         tokenizer = new Tokenizer(reader);
     }
 
-    public void next()
-    {
+    public void next() throws IOException {
         token = tokenizer.next();
     }
 

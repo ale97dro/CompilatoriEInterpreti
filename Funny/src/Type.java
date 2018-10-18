@@ -13,7 +13,7 @@ public enum Type {
     NOT,
     START, SLASH, PERCENTAGE,
     PLUS, MINUS,
-    //TODO: aggiungere riga con maggiore uguale e simili
+    LESS, LESSEQUAL, GREATER, GREATEREQUAL,
     EQUAL, NOTEQUAL,
     AND,
     OR,
