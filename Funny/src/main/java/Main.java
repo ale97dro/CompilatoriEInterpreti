@@ -5,7 +5,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         System.out.println("Hello Funny!");
 
-        Tokenizer tokenizer = new Tokenizer(new StringReader("{/*ciao c*/ (ciao = 4)*}"));
+        Tokenizer tokenizer = new Tokenizer(new StringReader("{/*ciao c*/(ciao = 4)*}"));
 
         System.out.println(tokenizer.next());
         System.out.println(tokenizer.next());
@@ -15,5 +15,8 @@ public class Main {
         System.out.println(tokenizer.next());
         System.out.println(tokenizer.next());
         System.out.println(tokenizer.next());
+
+
+        //Token.stampa();
     }
 }

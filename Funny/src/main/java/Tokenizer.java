@@ -1,17 +1,31 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
+
+/*
+
+    lista con parole chiave; la confronto
+ */
 public class Tokenizer {
 
     private BufferedReader reader;
     private int c;
     private StringBuilder str_builder;
+    private boolean token_ready;
+    private Token temp;
+
+    private static List<String> keyWord;
+
 
     public Tokenizer(Reader reader)
     {
         this.reader = new BufferedReader(reader);
         StringBuilder str_builder = new StringBuilder();
+
+        keyWord = new ArrayList<>();
     }
 
     public Token next() throws IOException {
@@ -20,8 +34,8 @@ public class Tokenizer {
             TODO: i commenti vanno saltati
          */
 
-        Token temp = null;
-        boolean token_ready = false;
+        temp = null;
+        token_ready = false;
 
         while(!token_ready)
         {
@@ -36,19 +50,18 @@ public class Tokenizer {
                     break;
                 case '=':
                     temp = new Token(Type.EQUAL);
-                    token_ready = true;
+                    equal();
+                    //token_ready = true;
                     break;
-                    //casi semplici: un solo carattere per token
-                default:
+                default://casi semplici: un solo carattere per token
                     temp = simpleToken(toChar(c));
                     token_ready = true;
                     break;
-
             }
         }
 
         str_builder = new StringBuilder();
-
+        token_ready = false;
         return temp;
     }
 
@@ -77,7 +90,7 @@ public class Tokenizer {
     private void slash() throws IOException
     {
         str_builder.append(toChar(c));
-        reader.mark(2);
+        reader.mark(1); //cosa trovo dopo slash: = o *
     }
 
     private void star() throws IOException
@@ -88,12 +101,38 @@ public class Tokenizer {
             str_builder.append(toChar(c));
     }
 
+    private void equal()
+    {
+        //Caratteri prima dell'uguale
+        if(str_builder.toString().equals("!"))
+        {
+            //str_builder.append(c);
+
+            token_ready = true;
+        }
+
+        if(str_builder.toString().equals("<"))
+        {
+            str_builder.append(c);
+            token_ready = true;
+        }
+
+        //if(str_builder.toString().equals(""))
+    }
+
     private char toChar(int n)
     {
         return ((char)n);
     }
 
-    private Token simpleToken(char _c)
+    private char bufferingLetters()
+    {
+        //while((c = reader.read()) !=
+
+        return 'x';
+    }
+
+    private Token simpleToken(char _c) //token di un solo carattere che non sono prefissi o suffissi
     {
         Token temp = null;
 
