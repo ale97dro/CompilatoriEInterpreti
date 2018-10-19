@@ -1,10 +1,11 @@
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Token
 {
     private Type type;
-    private int int_value; //TODO: provvisorio, magari va cambiato in BigDecimal
+    private BigDecimal bd_value; //TODO: provvisorio, magari va cambiato in BigDecimal
     private String string_value;
 
     private static Map<String, Token> key_word;
@@ -30,16 +31,26 @@ public class Token
             System.out.println(key_word.get(t));
     }
 
+    public static boolean isKeyWord(String s)
+    {
+        return key_word.get(s) != null;
+    }
+
+    public static Token getKeyWordToken(String s)
+    {
+        return key_word.get(s);
+    }
+
     public Token(Type type, String value)
     {
         this.type = type;
         this.string_value = value;
     }
 
-    public Token(Type type, int value)
+    public Token(Type type, BigDecimal value)
     {
         this.type = type;
-        this.int_value = value;
+        this.bd_value = value;
     }
 
     public Token(Type type)
@@ -48,9 +59,17 @@ public class Token
     }
 
     @Override
-    @Deprecated
     public String toString()
     {
-        return "Type: "+type;
+        StringBuilder str = new StringBuilder();
+        str.append("Type: "+type);
+
+        if(string_value!=null)
+            str.append(" Value: "+string_value);
+
+        if(bd_value!=null)
+            str.append(" Value: "+bd_value);
+
+        return str.toString();
     }
 }
