@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.math.BigDecimal;
 
 
 /*
@@ -44,7 +45,7 @@ public class Tokenizer {
                     star();
                     break;
                 case '=':
-                    c = reader.read(); //passo al prossimo carattere
+                    //c = reader.read(); //passo al prossimo carattere
                     equal();
                     break;
                 case '"': //se arriva una stringa
@@ -60,7 +61,7 @@ public class Tokenizer {
 //                                notParoleChiave -> variabile
 //                                parolaChiave -> newToken(parolaChiave)
                 default:
-                    if(isSymbolButNoUnderscore(toChar(c))) //un solo carattere come token: ( ) { } ...
+                    if(isSimpleToken(toChar(c))) //un solo carattere come token: ( ) { } ...
                     {
                         temp = simpleToken(toChar(c));
                         tokenReady();
@@ -74,18 +75,37 @@ public class Tokenizer {
                                     temp = getKeyWord(value);
                                 else
                                     temp = new Token(Type.ID, value);
-                            //temp = new Token(Type.ID, idValue());
                             tokenReady();
+                        }
+                        else
+                        {
+                            if((isDigit(toChar(c))) || isDot(toChar(c)))
+                            {
+                                String value = numberValue();
+                                temp = new Token(Type.NUM, new BigDecimal(value));
+                                tokenReady();
+                            }
                         }
                     }
                     break;
             }
+
+            isEndOfFile();
         }
 
         str_builder = new StringBuilder();
         token_ready = false;
         return temp;
     }
+
+    private void isEndOfFile() {
+        if(c == -1)
+        {
+            temp = new Token(Type.EOS);
+            tokenReady();
+        }
+    }
+
 
     private boolean checkKeyWord(String value)
     {
@@ -225,6 +245,21 @@ public class Tokenizer {
         return str.toString();
     }
 
+    private String numberValue() throws IOException {
+        StringBuilder str = new StringBuilder();
+
+        do
+        {
+            str.append(toChar(c));
+            reader.mark(1);
+            c = reader.read();
+        }
+        while((isDigit(toChar(c))) || isDot(toChar(c)));
+
+        reader.reset();
+        return  str.toString();
+    }
+
 
     private Token simpleToken(char _c) //token di un solo carattere che non sono prefissi o suffissi
     {
@@ -265,9 +300,22 @@ public class Tokenizer {
      * @param _c
      * @return
      */
-    public boolean isSymbolButNoUnderscore(char _c)
+    public boolean isSimpleToken(char _c)
     {
-        return (!Character.isDigit(_c)) && (!Character.isLetter(_c)) && (!isUnderscore(_c));
+        //return (!Character.isDigit(_c)) && (!Character.isLetter(_c)) && (!isUnderscore(_c));
+
+        switch (_c)
+        {
+            case ';':
+            case ',':
+            case '(':
+            case ')':
+            case '{':
+            case '}':
+                return true;
+            default:
+                return false;
+        }
     }
 
     private boolean isLetter(char c)
@@ -290,5 +338,8 @@ public class Tokenizer {
         return c == '_';
     }
 
-    //private boolean isLetter(char
+    private boolean isDot(char toChar)
+    {
+        return c == '.';
+    }
 }

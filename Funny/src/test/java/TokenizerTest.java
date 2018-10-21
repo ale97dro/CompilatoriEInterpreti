@@ -10,6 +10,6 @@ public class TokenizerTest {
     {
         Tokenizer tokenizer = new Tokenizer(new StringReader("ciao"));
 
-        Assert.assertEquals(tokenizer.isSymbolButNoUnderscore('c'), false);
+        Assert.assertEquals(tokenizer.isSimpleToken('c'), false);
     }
 }
