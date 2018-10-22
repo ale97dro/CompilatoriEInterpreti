@@ -5,7 +5,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Tokenizer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TokenizerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TokenizerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Lezione 1/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lezione 1/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -16,20 +15,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Funny$Main.ic" NAME="Main Coverage Results" MODIFIED="1540123715575" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Funny$Main.ic" NAME="Main Coverage Results" MODIFIED="1540238607669" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="2135605941">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="6" />
+          <entry key="project.closed" value="8" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.32" value="1" />
           <entry key="project.open.time.34" value="1" />
-          <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="7" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -57,46 +56,59 @@
       <usages-collector id="statistics.js.language.service.starts" />
       <usages-collector id="statistics.vcs.git.usages" />
     </session>
+    <session id="-270728971">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="556" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="556" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="9" column="90" selection-start-line="9" selection-start-column="90" selection-end-line="9" selection-end-column="90" />
+            <state relative-caret-position="136">
+              <caret line="9" column="97" selection-start-line="9" selection-start-column="97" selection-end-line="9" selection-end-column="97" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Tokenizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="478">
-              <caret line="77" column="41" lean-forward="true" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
+            <state relative-caret-position="278">
+              <caret line="183" column="23" lean-forward="true" selection-start-line="183" selection-start-column="23" selection-end-line="183" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3325#3326#0" expanded="true" />
-                <element signature="e#3370#3371#0" expanded="true" />
-                <element signature="e#3420#3421#0" expanded="true" />
-                <element signature="e#3471#3472#0" expanded="true" />
                 <element signature="method#skipComment#0;class#Tokenizer#0" />
                 <element signature="method#star#0;class#Tokenizer#0" />
-                <element signature="method#equal#0;class#Tokenizer#0" />
-                <element signature="e#5535#5536#0" expanded="true" />
-                <element signature="e#5567#5568#0" expanded="true" />
-                <element signature="e#7528#7529#0" expanded="true" />
-                <element signature="e#7562#7563#0" expanded="true" />
-                <element signature="e#8150#8151#0" expanded="true" />
-                <element signature="e#8194#8195#0" expanded="true" />
-                <element signature="e#8237#8238#0" expanded="true" />
-                <element signature="e#8284#8285#0" expanded="true" />
-                <element signature="e#8327#8328#0" expanded="true" />
-                <element signature="e#8370#8371#0" expanded="true" />
-                <element signature="e#8418#8419#0" expanded="true" />
-                <element signature="e#8449#8450#0" expanded="true" />
-                <element signature="e#8495#8496#0" expanded="true" />
-                <element signature="e#8526#8527#0" expanded="true" />
+                <element signature="e#5742#5743#0" expanded="true" />
+                <element signature="e#5774#5775#0" expanded="true" />
+                <element signature="e#7735#7736#0" expanded="true" />
+                <element signature="e#7769#7770#0" expanded="true" />
+                <element signature="e#8357#8358#0" expanded="true" />
+                <element signature="e#8401#8402#0" expanded="true" />
+                <element signature="e#8444#8445#0" expanded="true" />
+                <element signature="e#8491#8492#0" expanded="true" />
+                <element signature="e#8534#8535#0" expanded="true" />
+                <element signature="e#8577#8578#0" expanded="true" />
+                <element signature="e#8625#8626#0" expanded="true" />
+                <element signature="e#8656#8657#0" expanded="true" />
+                <element signature="e#8702#8703#0" expanded="true" />
+                <element signature="e#8733#8734#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,7 +117,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Token.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
+            <state relative-caret-position="527">
               <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -118,7 +130,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/Type.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+              <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -152,8 +164,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Type.java" />
         <option value="$PROJECT_DIR$/src/test/java/TokenizerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/Token.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Tokenizer.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Tokenizer.java" />
       </list>
     </option>
   </component>
@@ -164,8 +176,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="2805" />
-    <option name="y" value="-8" />
+    <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -175,6 +186,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -218,7 +230,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -227,7 +238,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540124342672" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540124344476" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -292,7 +303,9 @@
       <workItem from="1539947184493" duration="123000" />
       <workItem from="1539947338135" duration="11323000" />
       <workItem from="1540026700304" duration="22000" />
-      <workItem from="1540122842484" duration="1493000" />
+      <workItem from="1540122842484" duration="1549000" />
+      <workItem from="1540125988226" duration="12000" />
+      <workItem from="1540238362844" duration="820000" />
     </task>
     <servers />
   </component>
@@ -311,7 +324,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="18383000" />
+    <option name="totallyTimeSpent" value="19271000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -323,10 +336,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13965885" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14285715" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -335,7 +348,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.33044422" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -345,7 +358,6 @@
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.26435536" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="11" weight="0.32936078" />
-      <window_info anchor="right" id="Coverage" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -355,6 +367,7 @@
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info anchor="right" id="Coverage" order="9" side_tool="true" weight="0.32995737" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,21 +385,27 @@
           <properties />
           <option name="timeStamp" value="11" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/Tokenizer.java</url>
+          <line>37</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="toChar(c)" language="JAVA" />
-        <watch expression="temp.type" language="JAVA" />
-        <watch expression="((StringReader) reader.in).str" language="JAVA" custom="java.io.StringReader" />
-        <watch expression="str_builder.toString()" language="JAVA" />
-        <watch expression="toChar(reader.read())" language="JAVA" />
-        <watch expression="tokenizer.next()" language="JAVA" />
+        <watch expression="toChar(temp_character)" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>toChar(temp_character)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>toChar(c)</expression-string>
         <language-id>JAVA</language-id>
@@ -433,11 +452,6 @@
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>temp.type</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
@@ -456,40 +470,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Tokenizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="478">
-          <caret line="77" column="41" lean-forward="true" selection-start-line="77" selection-start-column="41" selection-end-line="77" selection-end-column="41" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3325#3326#0" expanded="true" />
-            <element signature="e#3370#3371#0" expanded="true" />
-            <element signature="e#3420#3421#0" expanded="true" />
-            <element signature="e#3471#3472#0" expanded="true" />
-            <element signature="method#skipComment#0;class#Tokenizer#0" />
-            <element signature="method#star#0;class#Tokenizer#0" />
-            <element signature="method#equal#0;class#Tokenizer#0" />
-            <element signature="e#5535#5536#0" expanded="true" />
-            <element signature="e#5567#5568#0" expanded="true" />
-            <element signature="e#7528#7529#0" expanded="true" />
-            <element signature="e#7562#7563#0" expanded="true" />
-            <element signature="e#8150#8151#0" expanded="true" />
-            <element signature="e#8194#8195#0" expanded="true" />
-            <element signature="e#8237#8238#0" expanded="true" />
-            <element signature="e#8284#8285#0" expanded="true" />
-            <element signature="e#8327#8328#0" expanded="true" />
-            <element signature="e#8370#8371#0" expanded="true" />
-            <element signature="e#8418#8419#0" expanded="true" />
-            <element signature="e#8449#8450#0" expanded="true" />
-            <element signature="e#8495#8496#0" expanded="true" />
-            <element signature="e#8526#8527#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Token.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
+        <state relative-caret-position="527">
           <caret line="33" column="28" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -500,14 +483,40 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/Type.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="9" column="90" selection-start-line="9" selection-start-column="90" selection-end-line="9" selection-end-column="90" />
+        <state relative-caret-position="136">
+          <caret line="9" column="97" selection-start-line="9" selection-start-column="97" selection-end-line="9" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Tokenizer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="183" column="23" lean-forward="true" selection-start-line="183" selection-start-column="23" selection-end-line="183" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#skipComment#0;class#Tokenizer#0" />
+            <element signature="method#star#0;class#Tokenizer#0" />
+            <element signature="e#5742#5743#0" expanded="true" />
+            <element signature="e#5774#5775#0" expanded="true" />
+            <element signature="e#7735#7736#0" expanded="true" />
+            <element signature="e#7769#7770#0" expanded="true" />
+            <element signature="e#8357#8358#0" expanded="true" />
+            <element signature="e#8401#8402#0" expanded="true" />
+            <element signature="e#8444#8445#0" expanded="true" />
+            <element signature="e#8491#8492#0" expanded="true" />
+            <element signature="e#8534#8535#0" expanded="true" />
+            <element signature="e#8577#8578#0" expanded="true" />
+            <element signature="e#8625#8626#0" expanded="true" />
+            <element signature="e#8656#8657#0" expanded="true" />
+            <element signature="e#8702#8703#0" expanded="true" />
+            <element signature="e#8733#8734#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

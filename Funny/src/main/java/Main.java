@@ -6,8 +6,8 @@ public class Main {
         System.out.println("Hello Funny!");
 
        // Tokenizer tokenizer = new Tokenizer(new StringReader("{/*ciao c*/(ciao = 4)}"));
-        //Tokenizer tokenizer = new Tokenizer(new StringReader("{  print(\"bella!\");    (   _ciao var=4.0; while if fi\"ciao\"  ; ) }         "));
-        Tokenizer tokenizer = new Tokenizer(new StringReader("{print(\"Hello World\");}"));
+        //Tokenizer tokenizer = new Tokenizer(new StringReader("{  \n\rprint(\"bella!\");    (   _ciao var=4.0; while if fi\"ciao\"  ; ) }         "));
+        Tokenizer tokenizer = new Tokenizer(new StringReader("{print(\"Hello World\") if(ciao==5);}"));
 
 
         System.out.println(tokenizer.next());

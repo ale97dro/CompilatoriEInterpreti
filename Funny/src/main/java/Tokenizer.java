@@ -47,6 +47,7 @@ public class Tokenizer {
                 case '=':
                     //c = reader.read(); //passo al prossimo carattere
                     equal();
+                    tokenReady();
                     break;
                 case '"': //se arriva una stringa
                     temp = new Token(Type.STRING, stringValue());
@@ -121,7 +122,12 @@ public class Tokenizer {
     private void skipSpace() throws IOException
     {
         int temp_character;
-        while((temp_character = reader.read()) == ' ');
+
+        do
+        {
+            temp_character = reader.read();
+        }
+        while((temp_character == ' ') || (temp_character == '\n') || (temp_character == '\r'));
 
         c = temp_character;
     }
@@ -167,46 +173,30 @@ public class Tokenizer {
             str_builder.append(toChar(c));
     }
 
-    private void equal()
-    {
-        //Caratteri prima dell'uguale
+    /**
+     * Possibilità: se trovo un altro '=', significa ==
+     *              se trovo un altro carattere, significa solo assegnamento
+     * @throws IOException
+     */
+    private void equal() throws IOException {
+        //Leggo il carattere dopo
 
+        reader.mark(1);
+        str_builder.append(toChar(c));
+        Type token_type;
 
-        if(str_builder.toString().equals("<"))
+        c = reader.read(); //prossimo carattere
+
+        switch (toChar(c))
         {
-            //str_builder.append(toChar(c));
-            temp = new Token(Type.LESSEQUAL);
-            token_ready = true;
-            return;
+            case '=':
+                temp = new Token(Type.EQUAL);
+                break;
+                default:
+                    temp = new Token(Type.ASSIGN);
+                    reader.reset();
+                    break;
         }
-
-        if(str_builder.toString().equals(">"))
-        {
-            //str_builder.append(toChar(c)); //TODO: oppure posso inizializzare temp
-            temp = new Token(Type.GREATEREQUAL);
-            token_ready = true;
-            return;
-        }
-
-        if(str_builder.toString().equals("="))
-        {
-            temp = new Token(Type.EQUAL);
-            token_ready = true;
-            return;
-        }
-
-        if(str_builder.toString().equals("!"))
-        {
-            //str_builder.append(toChar(c));
-            temp = new Token(Type.NOTEQUAL);
-            token_ready = true;
-            return;
-        }
-
-
-
-        str_builder.append("=");
-        //if(str_builder.toString().equals(""))
     }
 
     private char toChar(int n)
