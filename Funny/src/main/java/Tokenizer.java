@@ -38,14 +38,22 @@ public class Tokenizer {
             skipSpace();
 
             switch (toChar(c)) {
-                case '/':
-                    slash();
+                case '+':
+                    plus();
+                    tokenReady();
+                    break;
+                case '-':
+                    minus();
+                    tokenReady();
                     break;
                 case '*':
                     star();
+                    tokenReady();
+                    break;
+                case '/':
+                    slash();
                     break;
                 case '=':
-                    //c = reader.read(); //passo al prossimo carattere
                     equal();
                     tokenReady();
                     break;
@@ -72,7 +80,7 @@ public class Tokenizer {
                         if(isLetter(toChar(c)) || isUnderscore(toChar(c))) //id di una variabile oppure una parola chiave
                         {
                             String value = idValue();
-                            if(checkKeyWord(value))
+                            if(isKeyWord(value))
                                     temp = getKeyWord(value);
                                 else
                                     temp = new Token(Type.ID, value);
@@ -91,7 +99,7 @@ public class Tokenizer {
                     break;
             }
 
-            isEndOfFile();
+            endOfFile();
         }
 
         str_builder = new StringBuilder();
@@ -99,7 +107,11 @@ public class Tokenizer {
         return temp;
     }
 
-    private void isEndOfFile() {
+    //////////////////////////////////////////////////
+    ////////////METODI GENERAZIONE TOKEN /////////////
+    /////////////////////////////////////////////////
+
+    private void endOfFile() {
         if(c == -1)
         {
             temp = new Token(Type.EOS);
@@ -107,17 +119,10 @@ public class Tokenizer {
         }
     }
 
-
-    private boolean checkKeyWord(String value)
-    {
-        return Token.isKeyWord(value);
-    }
-
     private Token getKeyWord(String value)
     {
         return Token.getKeyWordToken(value);
     }
-
 
     private void skipSpace() throws IOException
     {
@@ -137,7 +142,7 @@ public class Tokenizer {
         boolean _continue;
         _continue = true;
 
-        reader.reset(); //resetto il reader
+        reset(); //resetto il reader
         reader.read(); //mangio /
         reader.read(); //mangio *
 
@@ -149,12 +154,67 @@ public class Tokenizer {
         }
     }
 
+    private void plus() throws IOException
+    {
+        markAndRead();
+
+        switch(toChar(c))
+        {
+            case '=':
+                temp = new Token(Type.ADDASSIGN);
+                break;
+                default:
+                    temp = new Token(Type.PLUS);
+                    reset();
+                    break;
+        }
+    }
+
+
+
+    private void minus() throws IOException {
+        markAndRead();
+
+        switch (toChar(c))
+        {
+            case '=':
+                temp = new Token(Type.MINUSASSIGN);
+                break;
+            case '>':
+                temp = new Token(Type.ARROW);
+                break;
+                default:
+                    temp = new Token(Type.MINUS);
+                    reset();
+                    break;
+        }
+    }
+
+    private void star() throws IOException
+    {
+//        if(str_builder.toString().equals("/"))
+//            skipComment();
+//        else
+//            str_builder.append(toChar(c));
+
+        markAndRead();
+
+        switch (toChar(c))
+        {
+            case '=':
+                temp = new Token(Type.MULTASSIGN);
+                break;
+            default:
+                temp = new Token(Type.STAR);
+                reset();
+                break;
+        }
+    }
+
     private void slash() throws IOException
     {
         str_builder.append(toChar(c));
-        reader.mark(1); //cosa trovo dopo slash: = o *
-
-        c=reader.read();
+        markAndRead();
         if(c=='*')
         {
 
@@ -165,13 +225,6 @@ public class Tokenizer {
         }
     }
 
-    private void star() throws IOException
-    {
-        if(str_builder.toString().equals("/"))
-            skipComment();
-        else
-            str_builder.append(toChar(c));
-    }
 
     /**
      * Possibilità: se trovo un altro '=', significa ==
@@ -182,7 +235,7 @@ public class Tokenizer {
         //Leggo il carattere dopo
 
         reader.mark(1);
-        str_builder.append(toChar(c));
+        //str_builder.append(toChar(c));
         Type token_type;
 
         c = reader.read(); //prossimo carattere
@@ -194,15 +247,11 @@ public class Tokenizer {
                 break;
                 default:
                     temp = new Token(Type.ASSIGN);
-                    reader.reset();
+                    reset();
                     break;
         }
     }
 
-    private char toChar(int n)
-    {
-        return ((char)n);
-    }
 
     /**
      * Trova valore di una stringa racchiuso tra " "
@@ -226,27 +275,26 @@ public class Tokenizer {
         do
         {
             str.append(toChar(c));
-            reader.mark(1);
-            c = reader.read();
+            markAndRead();
         }
         while((isLetter(toChar(c))) || isDigit(toChar(c)) || isUnderscore(toChar(c)));
 
-        reader.reset();
+        reset();
         return str.toString();
     }
 
-    private String numberValue() throws IOException {
+    private String numberValue() throws IOException
+    {
         StringBuilder str = new StringBuilder();
 
         do
         {
             str.append(toChar(c));
-            reader.mark(1);
-            c = reader.read();
+            markAndRead();
         }
         while((isDigit(toChar(c))) || isDot(toChar(c)));
 
-        reader.reset();
+        reset();
         return  str.toString();
     }
 
@@ -280,10 +328,36 @@ public class Tokenizer {
         return temp;
     }
 
+
+
+    ////////////////////////////////////////////
+    ////////////METODI DI UTILITA' /////////////
+    ///////////////////////////////////////////
+
+    private void markAndRead() throws IOException
+    {
+        reader.mark(1);
+        c = reader.read();
+    }
+
+    private void reset() throws IOException
+    {
+        reader.reset();
+    }
+
+    private char toChar(int n)
+    {
+        return ((char)n);
+    }
+
     private void tokenReady()
     {
         token_ready = true;
     }
+
+    ///////////////////////////////////////////////////
+    ////////////METODI CONTROLLI BOOLEANI /////////////
+    //////////////////////////////////////////////////
 
     /**
      * Vero se contiene caratteri speciali (in questo caso, viene passato solo un carattere)
@@ -306,6 +380,11 @@ public class Tokenizer {
             default:
                 return false;
         }
+    }
+
+    private boolean isKeyWord(String value)
+    {
+        return Token.isKeyWord(value);
     }
 
     private boolean isLetter(char c)
