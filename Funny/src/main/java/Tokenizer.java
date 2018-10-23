@@ -5,7 +5,6 @@ import java.math.BigDecimal;
 
 
 /*
-
     lista con parole chiave; la confronto
  */
 public class Tokenizer {
@@ -51,7 +50,12 @@ public class Tokenizer {
                     tokenReady();
                     break;
                 case '/':
-                    slash();
+                    slash(); //TODO: sistemare questa roba
+                    tokenReady();
+                    break;
+                case '%':
+                    percentage();
+                    tokenReady();
                     break;
                 case '=':
                     equal();
@@ -192,11 +196,6 @@ public class Tokenizer {
 
     private void star() throws IOException
     {
-//        if(str_builder.toString().equals("/"))
-//            skipComment();
-//        else
-//            str_builder.append(toChar(c));
-
         markAndRead();
 
         switch (toChar(c))
@@ -213,15 +212,36 @@ public class Tokenizer {
 
     private void slash() throws IOException
     {
-        str_builder.append(toChar(c));
         markAndRead();
-        if(c=='*')
-        {
 
+        switch(toChar(c))
+        {
+            case '=':
+                temp = new Token(Type.DIVASSIGN);
+                break;
+            case '*':
+                skipComment();
+                break;
+                default:
+                    temp = new Token(Type.SLASH);
+                    reset();
+                    break;
         }
-        else
-        {
+    }
 
+    private void percentage() throws IOException
+    {
+        markAndRead();
+
+        switch(toChar(c))
+        {
+            case '=':
+                temp = new Token(Type.PERCENTASSIGN);
+                break;
+                default:
+                    temp = new Token(Type.PERCENTAGE);
+                    reset();
+                    break;
         }
     }
 
