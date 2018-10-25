@@ -9,28 +9,17 @@ public class Main {
         //Tokenizer tokenizer = new Tokenizer(new StringReader("{  \n\rprint(\"bella!\");    (   _ciao var=4.0; while if fi\"ciao\"  ; ) }         "));
         //Tokenizer tokenizer = new Tokenizer(new StringReader("{print(\"Hello World\") if(ciao==5); variabile=10.4;}"));
         //Tokenizer tokenizer = new Tokenizer(new StringReader("{variabile*=5; var=5*6; ciao+=ok ciao+ciao ok-ok x-=1 ok->{print(\"ciao\")};}"));
-        Tokenizer tokenizer = new Tokenizer(new StringReader("{ciao%5; ciao/2; ciao/=4.0;}"));
+        //Tokenizer tokenizer = new Tokenizer(new StringReader("{ciao%5; ciao/2; ciao/=4.0; !ready; 5!=4; 4>=4}"));
+        Tokenizer tokenizer = new Tokenizer(new StringReader("/*ciao*/println(/*bella*/from, \" -> \", to);"));
 
 
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
-        System.out.println(tokenizer.next());
+        Token temp = null;
 
-        for(int i = 0; i<20;i++)
+        do
         {
-            System.out.println(tokenizer.next());
-            //System.out.println("character"+tokenizer.getC());
+            temp = tokenizer.next();
+            System.out.println(temp);
         }
+        while(temp.getType() != Type.EOS);
     }
 }

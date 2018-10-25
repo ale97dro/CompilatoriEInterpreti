@@ -3,7 +3,9 @@ import java.io.IOException;
 import java.io.Reader;
 import java.math.BigDecimal;
 
-
+/*TODO:
+    mancano commenti inline e annidati, numeri con notazione scientifica
+*/
 /*
     lista con parole chiave; la confronto
  */
@@ -51,7 +53,6 @@ public class Tokenizer {
                     break;
                 case '/':
                     slash(); //TODO: sistemare questa roba
-                    tokenReady();
                     break;
                 case '%':
                     percentage();
@@ -59,6 +60,26 @@ public class Tokenizer {
                     break;
                 case '=':
                     equal();
+                    tokenReady();
+                    break;
+                case '!':
+                    esclamation();
+                    tokenReady();
+                    break;
+                case '&':
+                    and();
+                    tokenReady();
+                    break;
+                case '|':
+                    or();
+                    tokenReady();
+                    break;
+                case '<':
+                    lessThan();
+                    tokenReady();
+                    break;
+                case '>':
+                    greaterThan();
                     tokenReady();
                     break;
                 case '"': //se arriva una stringa
@@ -146,13 +167,15 @@ public class Tokenizer {
         boolean _continue;
         _continue = true;
 
-        reset(); //resetto il reader
-        reader.read(); //mangio /
-        reader.read(); //mangio *
+        //reset(); //resetto il reader
+        //reader.read(); //mangio /
+        //reader.read(); //mangio *
+        c = reader.read();
 
         while(_continue) //vado alla fine del commento
         {
-            while ((c = reader.read()) != '*') ;
+            while ((c = reader.read()) != '*');
+            c =reader.read();
             if((c == '/'))
                 _continue = false;
         }
@@ -218,12 +241,14 @@ public class Tokenizer {
         {
             case '=':
                 temp = new Token(Type.DIVASSIGN);
+                tokenReady();
                 break;
             case '*':
                 skipComment();
                 break;
                 default:
                     temp = new Token(Type.SLASH);
+                    tokenReady();
                     reset();
                     break;
         }
@@ -254,11 +279,13 @@ public class Tokenizer {
     private void equal() throws IOException {
         //Leggo il carattere dopo
 
-        reader.mark(1);
+        //reader.mark(1);
         //str_builder.append(toChar(c));
-        Type token_type;
+        //Type token_type;
 
-        c = reader.read(); //prossimo carattere
+        //c = reader.read(); //prossimo carattere
+
+        markAndRead();
 
         switch (toChar(c))
         {
@@ -269,6 +296,86 @@ public class Tokenizer {
                     temp = new Token(Type.ASSIGN);
                     reset();
                     break;
+        }
+    }
+
+    private void esclamation() throws IOException
+    {
+        markAndRead();
+
+        switch (toChar(c))
+        {
+            case '=':
+                temp = new Token(Type.NOTEQUAL);
+                break;
+                default:
+                    temp = new Token(Type.NOT);
+                    reset();
+                    break;
+        }
+    }
+
+    private void and() throws IOException
+    {
+        markAndRead();
+
+        switch (toChar(c))
+        {
+            case '&':
+                temp = new Token(Type.AND);
+                break;
+                default:
+                    temp = new Token(Type.UNKNOW);
+                    reset();
+                    break;
+        }
+    }
+
+    private void or() throws IOException
+    {
+        markAndRead();
+
+        switch (toChar(c))
+        {
+            case '|':
+                temp = new Token(Type.OR);
+                break;
+                default:
+                    temp = new Token(Type.UNKNOW);
+                    reset();
+                    break;
+        }
+    }
+
+    private void greaterThan() throws IOException
+    {
+        markAndRead();
+
+        switch (toChar(c))
+        {
+            case '=':
+                temp = new Token(Type.GREATEREQUAL);
+                break;
+                default:
+                    temp = new Token(Type.GREATER);
+                    reset();
+                    break;
+        }
+    }
+
+    private void lessThan() throws IOException
+    {
+        markAndRead();
+
+        switch (toChar(c))
+        {
+            case '=':
+                temp = new Token(Type.LESSEQUAL);
+                break;
+            default:
+                temp = new Token(Type.LESS);
+                reset();
+                break;
         }
     }
 

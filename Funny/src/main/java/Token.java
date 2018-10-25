@@ -58,6 +58,11 @@ public class Token
         this.type = type;
     }
 
+    public Type getType()
+    {
+        return type;
+    }
+
     @Override
     public String toString()
     {
