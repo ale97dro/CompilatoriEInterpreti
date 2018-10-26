@@ -7,7 +7,8 @@ import java.math.BigDecimal;
     mancano commenti inline e annidati, numeri con notazione scientifica
 */
 /*
-    lista con parole chiave; la confronto
+    lista con parole chiave; la confronto //TODO: pensare a mettere in una mappa anche i token semplici
+    //TODO: gestire meglio il set del flag token_ready
  */
 public class Tokenizer {
 
@@ -15,7 +16,8 @@ public class Tokenizer {
     private int c;
     private StringBuilder str_builder;
     private boolean token_ready;
-    private Token temp;
+    private Token current;
+    private Token previous; //TODO: implementare get e assegnamento
 
     public char getC(){return toChar(c);}
 
@@ -31,7 +33,7 @@ public class Tokenizer {
             TODO: i commenti vanno saltati
          */
 
-        temp = null;
+        current = null;
         token_ready = false;
 
         while(!token_ready)
@@ -83,21 +85,13 @@ public class Tokenizer {
                     tokenReady();
                     break;
                 case '"': //se arriva una stringa
-                    temp = new Token(Type.STRING, stringValue());
+                    current = new Token(Type.STRING, stringValue());
                     tokenReady();
                     break;
-//                case '"': //valore di stringa
-//                    whileNotQuote -> builderAppend(carattere)
-//                    break;
-//                case 'lettera':
-//                    while notSimbolo -> builderAppend(carattere)
-//                        checkParoleChiave
-//                                notParoleChiave -> variabile
-//                                parolaChiave -> newToken(parolaChiave)
                 default:
                     if(isSimpleToken(toChar(c))) //un solo carattere come token: ( ) { } ...
                     {
-                        temp = simpleToken(toChar(c));
+                        current = simpleToken(toChar(c));
                         tokenReady();
                     }
                     else
@@ -106,17 +100,17 @@ public class Tokenizer {
                         {
                             String value = idValue();
                             if(isKeyWord(value))
-                                    temp = getKeyWord(value);
+                                    current = getKeyWord(value);
                                 else
-                                    temp = new Token(Type.ID, value);
+                                    current = new Token(Type.ID, value);
                             tokenReady();
                         }
                         else
                         {
-                            if((isDigit(toChar(c))) || isDot(toChar(c)))
+                            if((isDigit(toChar(c))) || isDot(toChar(c))) //numero
                             {
                                 String value = numberValue();
-                                temp = new Token(Type.NUM, new BigDecimal(value));
+                                current = new Token(Type.NUM, new BigDecimal(value));
                                 tokenReady();
                             }
                         }
@@ -124,30 +118,18 @@ public class Tokenizer {
                     break;
             }
 
-            endOfFile();
+            endOfFile(); //controllo se fine del file
         }
 
         str_builder = new StringBuilder();
         token_ready = false;
-        return temp;
+        return current;
     }
 
-    //////////////////////////////////////////////////
-    ////////////METODI GENERAZIONE TOKEN /////////////
-    /////////////////////////////////////////////////
 
-    private void endOfFile() {
-        if(c == -1)
-        {
-            temp = new Token(Type.EOS);
-            tokenReady();
-        }
-    }
-
-    private Token getKeyWord(String value)
-    {
-        return Token.getKeyWordToken(value);
-    }
+    ////////////////////////////////////////////
+    ////////////METODI DI SKIP ////////////////
+    ///////////////////////////////////////////
 
     private void skipSpace() throws IOException
     {
@@ -162,14 +144,11 @@ public class Tokenizer {
         c = temp_character;
     }
 
-    private void skipComment() throws IOException
+    private void skipBlockComment() throws IOException
     {
         boolean _continue;
         _continue = true;
 
-        //reset(); //resetto il reader
-        //reader.read(); //mangio /
-        //reader.read(); //mangio *
         c = reader.read();
 
         while(_continue) //vado alla fine del commento
@@ -181,6 +160,29 @@ public class Tokenizer {
         }
     }
 
+    private void skipInlineComment() throws IOException
+    {
+        while((c = reader.read()) != '\n');
+    }
+
+
+    //////////////////////////////////////////////////
+    ////////////METODI GENERAZIONE TOKEN /////////////
+    /////////////////////////////////////////////////
+
+    private Token getKeyWord(String value)
+    {
+        return Token.getKeyWordToken(value);
+    }
+
+    private void endOfFile() {
+        if(c == -1)
+        {
+            current = new Token(Type.EOS);
+            tokenReady();
+        }
+    }
+
     private void plus() throws IOException
     {
         markAndRead();
@@ -188,16 +190,16 @@ public class Tokenizer {
         switch(toChar(c))
         {
             case '=':
-                temp = new Token(Type.ADDASSIGN);
+                current = new Token(Type.ADDASSIGN);
                 break;
                 default:
-                    temp = new Token(Type.PLUS);
+                    current = new Token(Type.PLUS);
                     reset();
                     break;
         }
+
+        //tokenReady();
     }
-
-
 
     private void minus() throws IOException {
         markAndRead();
@@ -205,13 +207,13 @@ public class Tokenizer {
         switch (toChar(c))
         {
             case '=':
-                temp = new Token(Type.MINUSASSIGN);
+                current = new Token(Type.MINUSASSIGN);
                 break;
             case '>':
-                temp = new Token(Type.ARROW);
+                current = new Token(Type.ARROW);
                 break;
                 default:
-                    temp = new Token(Type.MINUS);
+                    current = new Token(Type.MINUS);
                     reset();
                     break;
         }
@@ -224,10 +226,10 @@ public class Tokenizer {
         switch (toChar(c))
         {
             case '=':
-                temp = new Token(Type.MULTASSIGN);
+                current = new Token(Type.MULTASSIGN);
                 break;
             default:
-                temp = new Token(Type.STAR);
+                current = new Token(Type.STAR);
                 reset();
                 break;
         }
@@ -240,14 +242,17 @@ public class Tokenizer {
         switch(toChar(c))
         {
             case '=':
-                temp = new Token(Type.DIVASSIGN);
+                current = new Token(Type.DIVASSIGN);
                 tokenReady();
                 break;
             case '*':
-                skipComment();
+                skipBlockComment();
+                break;
+            case '/':
+                skipInlineComment();
                 break;
                 default:
-                    temp = new Token(Type.SLASH);
+                    current = new Token(Type.SLASH);
                     tokenReady();
                     reset();
                     break;
@@ -261,10 +266,10 @@ public class Tokenizer {
         switch(toChar(c))
         {
             case '=':
-                temp = new Token(Type.PERCENTASSIGN);
+                current = new Token(Type.PERCENTASSIGN);
                 break;
                 default:
-                    temp = new Token(Type.PERCENTAGE);
+                    current = new Token(Type.PERCENTAGE);
                     reset();
                     break;
         }
@@ -279,21 +284,15 @@ public class Tokenizer {
     private void equal() throws IOException {
         //Leggo il carattere dopo
 
-        //reader.mark(1);
-        //str_builder.append(toChar(c));
-        //Type token_type;
-
-        //c = reader.read(); //prossimo carattere
-
         markAndRead();
 
         switch (toChar(c))
         {
             case '=':
-                temp = new Token(Type.EQUAL);
+                current = new Token(Type.EQUAL);
                 break;
                 default:
-                    temp = new Token(Type.ASSIGN);
+                    current = new Token(Type.ASSIGN);
                     reset();
                     break;
         }
@@ -306,10 +305,10 @@ public class Tokenizer {
         switch (toChar(c))
         {
             case '=':
-                temp = new Token(Type.NOTEQUAL);
+                current = new Token(Type.NOTEQUAL);
                 break;
                 default:
-                    temp = new Token(Type.NOT);
+                    current = new Token(Type.NOT);
                     reset();
                     break;
         }
@@ -322,10 +321,10 @@ public class Tokenizer {
         switch (toChar(c))
         {
             case '&':
-                temp = new Token(Type.AND);
+                current = new Token(Type.AND);
                 break;
                 default:
-                    temp = new Token(Type.UNKNOW);
+                    current = new Token(Type.UNKNOW);
                     reset();
                     break;
         }
@@ -338,10 +337,10 @@ public class Tokenizer {
         switch (toChar(c))
         {
             case '|':
-                temp = new Token(Type.OR);
+                current = new Token(Type.OR);
                 break;
                 default:
-                    temp = new Token(Type.UNKNOW);
+                    current = new Token(Type.UNKNOW);
                     reset();
                     break;
         }
@@ -354,10 +353,10 @@ public class Tokenizer {
         switch (toChar(c))
         {
             case '=':
-                temp = new Token(Type.GREATEREQUAL);
+                current = new Token(Type.GREATEREQUAL);
                 break;
                 default:
-                    temp = new Token(Type.GREATER);
+                    current = new Token(Type.GREATER);
                     reset();
                     break;
         }
@@ -370,10 +369,10 @@ public class Tokenizer {
         switch (toChar(c))
         {
             case '=':
-                temp = new Token(Type.LESSEQUAL);
+                current = new Token(Type.LESSEQUAL);
                 break;
             default:
-                temp = new Token(Type.LESS);
+                current = new Token(Type.LESS);
                 reset();
                 break;
         }

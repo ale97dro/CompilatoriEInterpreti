@@ -11,8 +11,14 @@ public class Parser
         tokenizer = new Tokenizer(reader);
     }
 
-    public void next() throws IOException {
+    private void next() throws IOException
+    {
         token = tokenizer.next();
+    }
+
+    private void previous()
+    {
+        //Todo implementare
     }
 
     public void execute()

@@ -5,7 +5,7 @@ import java.util.Map;
 public class Token
 {
     private Type type;
-    private BigDecimal bd_value; //TODO: provvisorio, magari va cambiato in BigDecimal
+    private BigDecimal bd_value;
     private String string_value;
 
     private static Map<String, Token> key_word;
