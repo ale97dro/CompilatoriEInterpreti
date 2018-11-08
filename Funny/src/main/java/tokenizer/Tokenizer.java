@@ -1,3 +1,5 @@
+package tokenizer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.Reader;
@@ -9,6 +11,7 @@ import java.math.BigDecimal;
 /*
     lista con parole chiave; la confronto //TODO: pensare a mettere in una mappa anche i token semplici
     //TODO: gestire meglio il set del flag token_ready
+    //TODO: 5+10 deve essere un unico token
  */
 public class Tokenizer {
 
@@ -16,6 +19,7 @@ public class Tokenizer {
     private int c;
     private StringBuilder str_builder;
     private boolean token_ready;
+    //private boolean EOS = false;
     private Token current;
     private Token previous; //TODO: implementare get e assegnamento
 
@@ -35,6 +39,9 @@ public class Tokenizer {
 
         current = null;
         token_ready = false;
+
+        if(isEOS(c))
+            endOfFile(); //controllo se fine del file
 
         while(!token_ready)
         {
@@ -118,7 +125,7 @@ public class Tokenizer {
                     break;
             }
 
-            endOfFile(); //controllo se fine del file
+
         }
 
         str_builder = new StringBuilder();
@@ -133,13 +140,14 @@ public class Tokenizer {
 
     private void skipSpace() throws IOException
     {
-        int temp_character;
+        int temp_character = c;
 
         do
         {
             temp_character = reader.read();
         }
         while((temp_character == ' ') || (temp_character == '\n') || (temp_character == '\r'));
+                //temp_character = reader.read();
 
         c = temp_character;
     }
@@ -176,11 +184,11 @@ public class Tokenizer {
     }
 
     private void endOfFile() {
-        if(c == -1)
-        {
+        //if(c == -1)
+        //{
             current = new Token(Type.EOS);
             tokenReady();
-        }
+        //}
     }
 
     private void plus() throws IOException
@@ -197,8 +205,6 @@ public class Tokenizer {
                     reset();
                     break;
         }
-
-        //tokenReady();
     }
 
     private void minus() throws IOException {
@@ -412,13 +418,34 @@ public class Tokenizer {
     private String numberValue() throws IOException
     {
         StringBuilder str = new StringBuilder();
+        boolean dot_find = false;
+        boolean dot_repeated = false;
 
         do
         {
-            str.append(toChar(c));
-            markAndRead();
+            if(isDot(toChar(c)))
+            {
+                if(!dot_find)
+                {
+                    dot_find = true;
+                }
+                else
+                {
+                    dot_repeated = true;
+                    reader.reset();
+                    return str.toString();
+                }
+            }
+
+            if(!dot_repeated)
+            {
+                str.append(toChar(c));
+                reader.mark(2);
+                c = reader.read();
+                //markAndRead();
+            }
         }
-        while((isDigit(toChar(c))) || isDot(toChar(c)));
+        while(((isDigit(toChar(c)) || isDot(toChar(c)))) && !dot_repeated);
 
         reset();
         return  str.toString();
@@ -536,5 +563,10 @@ public class Tokenizer {
     private boolean isDot(char toChar)
     {
         return c == '.';
+    }
+
+    private boolean isEOS(int c)
+    {
+        return c == -1;
     }
 }
