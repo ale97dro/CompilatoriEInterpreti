@@ -41,6 +41,16 @@ public class Token
 
     }
 
+    public String getStringValue()
+    {
+        return string_value;
+    }
+
+    public BigDecimal getDecimalValue()
+    {
+        return bd_value;
+    }
+
     @Deprecated
     public static void stampa()
     {

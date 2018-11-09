@@ -20,7 +20,7 @@ public class Tokenizer {
     private StringBuilder str_builder;
     private boolean token_ready;
     //private boolean EOS = false;
-    private Token current;
+    private Token current = null;
     private Token previous; //TODO: implementare get e assegnamento
 
     public char getC(){return toChar(c);}
@@ -31,12 +31,17 @@ public class Tokenizer {
         StringBuilder str_builder = new StringBuilder();
     }
 
+    public Token previous()
+    {
+        return previous;
+    }
+
     public Token next() throws IOException {
         /*
             TODO: saltare gli spazi bianchi
             TODO: i commenti vanno saltati
          */
-
+        previous = current;
         current = null;
         token_ready = false;
 

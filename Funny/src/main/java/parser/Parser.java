@@ -1,11 +1,16 @@
 package parser;
 
+import parser.expression.AssignmentExpr;
+import parser.expression.Expr;
+import parser.expression.FunExpr;
 import tokenizer.Tokenizer;
 import tokenizer.Token;
 import tokenizer.Type;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Parser
 {
@@ -32,23 +37,26 @@ public class Parser
         //Todo implementare
     }
 
-    public void execute() throws ParserException, IOException //==program
+    public Expr execute() throws ParserException, IOException //==program
     {
-        Scope scope = new Scope();
-        function(scope);
+        Expr expr = function(null);
         check(Type.EOS, token.getType());
+
+        return expr;
     }
 
-    private void check(Type expected, Type actual) throws ParserException {
+    private boolean check(Type expected, Type actual) throws ParserException {
         if(expected != actual)
             throw new ParserException("Parsing error");
+        return true;
     }
 
-    private void checkAndNext(Type expected, Type actual) throws ParserException, IOException
+    private boolean checkAndNext(Type expected, Type actual) throws ParserException, IOException
     {
         if(expected != actual)
             throw new ParserException("Parsing error");
         next();
+        return true;
     }
 
     private boolean isId(Type type)
@@ -65,55 +73,71 @@ public class Parser
     /////////////////////////////////////
     //////////// GRAMMATICA ////////////
     ///////////////////////////////////
-    private void function(Scope scope) throws ParserException, IOException
+    private Expr function(Scope scope) throws ParserException, IOException
     {
         checkAndNext(Type.BRACEOPEN, tokenType());
-        optParams(scope);
-        optLocals(scope);
-        optSequence(scope);
+
+        List<String> params = optParams(scope);
+        List<String> locals = optLocals(scope);
+        List<String> params_and_locals = new ArrayList<>(params);
+        params_and_locals.addAll(locals);
+
+        scope = new Scope(params_and_locals);
+
+        Expr expr = optSequence(scope);
+
         checkAndNext(Type.BRACECLOSE, tokenType());
 
-        //FunExpr
-
+        return expr;
     }
 
-    private void optParams(Scope scope) throws IOException, ParserException
+    private List<String> optParams(Scope scope) throws IOException, ParserException
     {
         checkAndNext(Type.BRACKETOPEN, tokenType());
-        optIds(scope);
+        List<String> params = optIds(scope);
         checkAndNext(Type.BRACKETCLOSE, tokenType());
 
-        //optExpr
+        return params;
     }
 
-    private void optLocals(Scope scope)
+    private List<String> optLocals(Scope scope) throws ParserException, IOException
     {
-        optIds(scope);
-        //optLocalsExpr
+        return optIds(scope);
     }
 
-    private void optSequence(Scope scope) throws IOException, ParserException
+    private Expr optSequence(Scope scope) throws IOException, ParserException
     {
-        checkAndNext(Type.ARROW, tokenType());
-        sequence(scope);
+        if(tokenType() == Type.ARROW)
+            return sequence(scope);
 
-        //optSequenceExpr
+        return null;
     }
 
-    private void optIds(Scope scope)
-    {
+    private List<String> optIds(Scope scope) throws ParserException, IOException {
+        List<String> ids = new ArrayList<>();
+
         while(isId(tokenType()))
-            id(scope);
+        {
+            String temp = id(scope);
+            if(ids.contains(temp))
+                throw new ParserException("error");
+            ids.add(temp);
+        }
 
-        //optIdExpr
+        return ids;
     }
 
-    private void id(Scope scope)
-    {
+    private String id(Scope scope) throws ParserException, IOException {
         //TODO immagino di dover ritornare il nodo con il token id
+
+        //Controllo se esiste nello scope: se esiste, exception
+        //se non esiste, ritorno il nome del token
+
+        checkAndNext(Type.ID, tokenType());
+        return token.getStringValue();
     }
 
-    private void sequence(Scope scope) throws IOException, ParserException
+    private Expr sequence(Scope scope) throws IOException, ParserException
     {
         optAssignment(scope);
         while(isOptAssignment(tokenType()))
@@ -123,26 +147,75 @@ public class Parser
         }
 
         //sequenceExpr
+
+        return null;
     }
 
 
 
-    private void optAssignment(Scope scope) throws ParserException
+    private Expr optAssignment(Scope scope) throws ParserException
     {
-        assignment(scope);
+        //todo: controllare il prossimo token per verificare se c'è o no
+        if(isId(Type.ID) || (tokenType() == Type.ASSIGN)) //todo: la seconda condizione è sbagliata
+            return assignment(scope);
+
+        return null;
     }
 
-    private void assignment(Scope scope) throws ParserException
+    private Expr assignment(Scope scope) throws ParserException, IOException {
+        //TODO: controllo se il tipo è id o logicalOr; se uno di questi chiamo sotto parser altrimenti ritorno null
+        //TODO: se non ho id, logicalOr
+        //se ho id, devo controllare anche il carattere dopo: se è uno dei 5, allora poi dopo ho assignment altrimenti logicalOr
+        if(isId(Type.ID))
+        {
+            String id_value = token.getStringValue(); //prendo il valore dell'id
+            checkInScope(scope, id_value); //controllo che esista nello scope (altrimenti errore)
+            next(); //mangio token id
+            if(isAssignmentOperator(tokenType()))
+            {
+                Type operator = token.getType();
+                next(); //mangio token dell'operatore (todo magari non va qui)
+                return new AssignmentExpr(id_value, operator, assignment(scope)); //todo: questa assignmentexpr deve diventare una binary: trasforma x+=5 in x = x + 5
+            }
+            else
+                return logicalOr(scope);
+        }
+        else
+            return logicalOr(scope);
+    }
+
+    private boolean isAssignmentOperator(Type tokenType)
     {
-        check(Type.ID, tokenType());
-        //TODO continuare implementazione
+        switch(tokenType)
+        {
+            case ASSIGN:
+            case ADDASSIGN:
+            case MINUSASSIGN:
+            case MULTASSIGN:
+            case DIVASSIGN:
+            case PERCENTASSIGN:
+                return true;
+        }
+
+        return false;
+    }
+
+    private void checkInScope(Scope scope, String id_value) throws ParserException
+    {
+        if(!scope.checkInScope(id_value))
+            throw new ParserException("Error");
     }
 
 
-    private void logicalOr(Scope scope) throws IOException, ParserException {
-        logicalAnd(scope);
-        checkAndNext(Type.OR, tokenType());
-        logicalOr(scope);
+    private void logicalOr(Scope scope) throws IOException, ParserException
+    {
+        Expr expr = logicalAnd(scope);
+
+        if(tokenType() == Type.OR)
+            expr = logicalOr(scope);
+
+
+        //checkAndNext(Type.OR, tokenType());
     }
 
     private void logicalAnd(Scope scope)
