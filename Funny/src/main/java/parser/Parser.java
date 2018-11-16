@@ -1,5 +1,6 @@
 package parser;
 
+import com.sun.deploy.security.ValidationState;
 import parser.expression.*;
 import tokenizer.Tokenizer;
 import tokenizer.Token;
@@ -243,7 +244,7 @@ public class Parser
         return expr;
     }
 
-    private Expr logicalAnd(Scope scope) throws IOException {
+    private Expr logicalAnd(Scope scope) throws IOException, ParserException {
         Expr expr = equality(scope);
 
         if(tokenType() == Type.AND)
@@ -255,7 +256,7 @@ public class Parser
         return expr;
     }
 
-    private Expr equality(Scope scope) throws IOException {
+    private Expr equality(Scope scope) throws IOException, ParserException {
         Expr expr = comparision(scope);
 
         if(token.getType() == Type.EQUAL || token.getType() == Type.NOTEQUAL)
@@ -268,8 +269,7 @@ public class Parser
         return expr;
     }
 
-    private Expr comparision(Scope scope) throws IOException
-    {
+    private Expr comparision(Scope scope) throws IOException, ParserException {
         Expr expr = add(scope);
 
         if(token.getType() == Type.LESS || token.getType() == Type.LESSEQUAL || token.getType() == Type.GREATER || token.getType() == Type.GREATEREQUAL)
@@ -282,7 +282,7 @@ public class Parser
         return expr;
     }
 
-    private Expr add(Scope scope) throws IOException {
+    private Expr add(Scope scope) throws IOException, ParserException {
         Expr expr = mult(scope);
 
         while(token.getType() == Type.PLUS || token.getType() == Type.MINUS)
@@ -295,8 +295,7 @@ public class Parser
         return expr;
     }
 
-    private Expr mult(Scope scope) throws IOException
-    {
+    private Expr mult(Scope scope) throws IOException, ParserException {
         Expr expr = unary(scope);
 
         while(token.getType() == Type.STAR || token.getType() == Type.SLASH || token.getType() == Type.PERCENTAGE)
@@ -309,12 +308,12 @@ public class Parser
         return expr;
     }
 
-    private Expr unary(Scope scope) throws IOException {
+    private Expr unary(Scope scope) throws IOException, ParserException {
         if(token.getType() == Type.PLUS || token.getType() == Type.MINUS || token.getType() == Type.NOT)
         {
             Type operation = token.getType();
             next();
-            return new UnaryExpr(operation, unary(scope)); //todo: cosa ritorna?
+            return new UnaryExpr(operation, unary(scope));
         }
         else
         {
@@ -322,32 +321,94 @@ public class Parser
         }
     }
 
-    private Expr postfix(Scope scope)
-    {
+    private Expr postfix(Scope scope) throws IOException, ParserException {
         Expr expr = primary(scope);
 
         while(token.getType() == Type.BRACKETOPEN)
         {
-
+            expr = new InvokeExpr(expr, args(scope));
         }
 
         return expr;
 
     }
 
-    private Expr primary(Scope scope) {
-    }
-
-    private Expr args(Scope scope) throws IOException, ParserException
-    {
-        checkAndNext(Type.BRACKETOPEN, token.getType());
-        Expr expr = sequence(scope);
-
-        while(token.getType() == Type.COMMA)
+    private Expr primary(Scope scope) throws ParserException, IOException {
+        switch(token.getType())
         {
-
+            case NUM:
+                return getNumber(scope);
+            case TRUE:
+            case FALSE:
+                return getBoolean(scope);
+            case NIL:
+                return getNil(scope);
+            case STRING:
+                return getString(scope);
+            case ID:
+                return getId(scope);
+            case IF:
+            case IFNOT:
+                return getIf(scope);
+            case WHILE:
+            case WHILENOT:
+                return getWhile(scope);
+            case PRINT:
+            case PRINTLN:
+                return getPrint(scope);
+            case BRACKETOPEN:
+                return function(scope);
+            case BRACEOPEN:
+                return getSubSequence(scope);
+            default:
+                throw new ParserException("Error while parsing");
         }
     }
 
+    private Expr getNumber(Scope scope) {
+    }
 
+    private Expr getBoolean(Scope scope) {
+    }
+
+    private Expr getNil(Scope scope) {
+    }
+
+    private Expr getString(Scope scope) {
+    }
+
+    private Expr getId(Scope scope) {
+    }
+
+    private Expr getIf(Scope scope) {
+    }
+
+    private Expr getWhile(Scope scope) {
+    }
+
+    private Expr getPrint(Scope scope) {
+    }
+
+    private Expr getSubSequence(Scope scope) {
+    }
+
+    private ExprList args(Scope scope) throws IOException, ParserException
+    {
+        ExprList list = new ExprList();
+        checkAndNext(Type.BRACKETOPEN, token.getType());
+
+        if(token.getType() == Type.BRACKETCLOSE)
+            return list;
+
+        list.add(sequence(scope));
+
+        while(token.getType() == Type.COMMA)
+        {
+            next();
+            list.add(sequence(scope));
+        }
+        checkAndNext(Type.BRACKETCLOSE, token.getType());
+
+        return list;
+    }
 }

@@ -2,5 +2,5 @@ package parser.expression;
 
 public abstract class Expr {
 
-    abstract Val eval(Env env);
+    public abstract Val eval(Env env);
 }
