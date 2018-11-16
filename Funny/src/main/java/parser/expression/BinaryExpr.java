@@ -3,15 +3,16 @@ package parser.expression;
 import tokenizer.Type;
 
 public class BinaryExpr extends Expr {
-    private String id;
-    private Type operation;
-    private Expr expression;
 
-    public BinaryExpr(String id, Type operation, Expr expression)
+    private Expr lexpr;
+    private Expr rexpr;
+    private Type operation;
+
+    public BinaryExpr(Expr lexpr, Type operation, Expr rexpr)
     {
-        this.id = id;
+        this.lexpr = lexpr;
         this.operation = operation;
-        this.expression = expression;
+        this.rexpr = rexpr;
     }
     @Override
     Val eval(Env env) {
