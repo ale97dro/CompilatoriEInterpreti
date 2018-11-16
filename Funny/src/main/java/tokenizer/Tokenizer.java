@@ -22,6 +22,7 @@ public class Tokenizer {
     //private boolean EOS = false;
     private Token current = null;
     private Token previous; //TODO: implementare get e assegnamento
+    private boolean previousMode = false;
 
     public char getC(){return toChar(c);}
 
@@ -31,9 +32,10 @@ public class Tokenizer {
         StringBuilder str_builder = new StringBuilder();
     }
 
-    public Token previous()
+    public void previous()
     {
-        return previous;
+        //return previous;
+        previousMode = true;
     }
 
     public Token next() throws IOException {
@@ -41,6 +43,13 @@ public class Tokenizer {
             TODO: saltare gli spazi bianchi
             TODO: i commenti vanno saltati
          */
+
+        if(previousMode)
+        {
+            previousMode = false;
+            return previous;
+        }
+
         previous = current;
         current = null;
         token_ready = false;

@@ -1,6 +1,6 @@
 package parser.expression;
 
-public class OptExpr extends Expr {
+public class InvokeExpr extends Expr {
     @Override
     Val eval(Env env) {
         return null;

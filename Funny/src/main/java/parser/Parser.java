@@ -1,8 +1,6 @@
 package parser;
 
-import parser.expression.AssignmentExpr;
-import parser.expression.Expr;
-import parser.expression.FunExpr;
+import parser.expression.*;
 import tokenizer.Tokenizer;
 import tokenizer.Token;
 import tokenizer.Type;
@@ -34,7 +32,7 @@ public class Parser
 
     private void previous()
     {
-        //Todo implementare
+        tokenizer.previous();
     }
 
     public Expr execute() throws ParserException, IOException //==program
@@ -45,18 +43,16 @@ public class Parser
         return expr;
     }
 
-    private boolean check(Type expected, Type actual) throws ParserException {
+    private void check(Type expected, Type actual) throws ParserException {
         if(expected != actual)
             throw new ParserException("Parsing error");
-        return true;
     }
 
-    private boolean checkAndNext(Type expected, Type actual) throws ParserException, IOException
+    private void checkAndNext(Type expected, Type actual) throws ParserException, IOException
     {
         if(expected != actual)
             throw new ParserException("Parsing error");
         next();
-        return true;
     }
 
     private boolean isId(Type type)
@@ -139,11 +135,11 @@ public class Parser
 
     private Expr sequence(Scope scope) throws IOException, ParserException
     {
-        optAssignment(scope);
+        Expr expr = optAssignment(scope);
         while(isOptAssignment(tokenType()))
         {
             next();
-            optAssignment(scope);
+            expr = new SeqExpr(optAssignment(scope)); //cosa devo mettere dentro sequence? lista di assignment
         }
 
         //sequenceExpr
@@ -153,13 +149,8 @@ public class Parser
 
 
 
-    private Expr optAssignment(Scope scope) throws ParserException
-    {
-        //todo: controllare il prossimo token per verificare se c'è o no
-        if(isId(Type.ID) || (tokenType() == Type.ASSIGN)) //todo: la seconda condizione è sbagliata
-            return assignment(scope);
-
-        return null;
+    private Expr optAssignment(Scope scope) throws ParserException, IOException {
+        return assignment(scope);
     }
 
     private Expr assignment(Scope scope) throws ParserException, IOException {
@@ -171,14 +162,17 @@ public class Parser
             String id_value = token.getStringValue(); //prendo il valore dell'id
             checkInScope(scope, id_value); //controllo che esista nello scope (altrimenti errore)
             next(); //mangio token id
-            if(isAssignmentOperator(tokenType()))
+            if(isAssignmentOperator(tokenType())) //se è uno dei tipi previsti, posso chiamare l'assignment; altrimenti chiamo logicalOr
             {
                 Type operator = token.getType();
                 next(); //mangio token dell'operatore (todo magari non va qui)
-                return new AssignmentExpr(id_value, operator, assignment(scope)); //todo: questa assignmentexpr deve diventare una binary: trasforma x+=5 in x = x + 5
+                return new BinaryExpr(id_value, operator, assignment(scope)); //todo: questa assignmentexpr deve diventare una binary: trasforma x+=5 in x = x + 5
             }
             else
+            {
+                previous(); //entro in modalità previous: il tokenizer al prossimo next restituisce il precedente token
                 return logicalOr(scope);
+            }
         }
         else
             return logicalOr(scope);
@@ -207,18 +201,61 @@ public class Parser
     }
 
 
-    private void logicalOr(Scope scope) throws IOException, ParserException
+    private Expr logicalOr(Scope scope) throws IOException, ParserException
     {
         Expr expr = logicalAnd(scope);
 
-        if(tokenType() == Type.OR)
-            expr = logicalOr(scope);
+        if(tokenType() == Type.OR) //se token è or, ho ancora un logicalor
+        {
+            next(); // //todo non so se giusto il next
+            //TODO: richiamo logicalOr ma cosa devo ritornare?
+        }
 
-
-        //checkAndNext(Type.OR, tokenType());
+        return expr;
     }
 
-    private void logicalAnd(Scope scope)
+    private Expr logicalAnd(Scope scope) throws IOException {
+        Expr expr = equality(scope);
+
+        if(tokenType() == Type.AND)
+        {
+            next(); //todo non so se giusto il next
+            //TODO: richiamo logicaland ma cosa devo ritornare?
+        }
+
+        return expr;
+    }
+
+    private Expr equality(Scope scope)
     {
+        Expr expr = comparision(scope);
+
+        if(token.getType() == Type.EQUAL || token.getType() == Type.NOTEQUAL)
+        {
+            expr = new UnaryExpr(comparision(scope));
+        }
+
+        return expr;
+    }
+
+    private Expr comparision(Scope scope) {
+        Expr expr = add(scope);
+
+        if(token.getType() == Type.LESS || token.getType() == Type.LESSEQUAL || token.getType() == Type.GREATER)
+            expr = new UnaryExpr(add(scope));
+
+        return expr;
+    }
+
+    private Expr add(Scope scope)
+    {
+        Expr expr = mult(scope);
+
+        if(token.getType())
+    }
+
+    private Expr mult(Scope scope)
+    {
+
     }
 }

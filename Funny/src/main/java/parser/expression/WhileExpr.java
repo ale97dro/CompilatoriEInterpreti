@@ -1,6 +1,6 @@
 package parser.expression;
 
-public class SequenceExpr extends Expr {
+public class WhileExpr extends Expr {
     @Override
     Val eval(Env env) {
         return null;
