@@ -1,0 +1,114 @@
+Ambiente: associazione del nome delle variabili al loro valore
+
+Val su se stesso ritorna un val (return this). Infatti Env non viene usato perchè un valore è sempre un valore
+
+CODICE
+Binary
+eval(--)
+Val lval = lexpr.eval(env)
+Val rval = rexpr.eval(env)
+switch(oper)
+{
+case plus
+	return lval.plus(rval);
+case minus
+	return lval.minus(rval)
+	
+NumVal times(Val arg) {
+return new NumVal(num.multiply(arg.checkNum().num)); //con checknum controllo se arg è di tipo numval, altrimenti non posso eseguire la moltiplicazione
+}
+
+NumVal checkuNum() { return this}; //implementato in NumVal, non in Val
+
+if ha tre nodi: espressione test e sottonodi per then e else
+
+Valuta prima la condizione controlla che è boolean recupera il boolean; poi valuta then o else a seconda del risultato del boolean
+
+
+//PROGRAMMINO FUNNY
+SetVarExpr
+	id: makeCounter
+	expr: FunExpr
+		params: ["balance"]
+		locals: []
+		code: FunExpr
+			params: ["amount"]
+			locals: []
+			code:
+				GetVarExpr: "balance"
+				GetVarExpr: "amount"
+				
+ClosureVal attributi: env e funExpr
+Closure: valore che rappresenta l'associazione di una funzione (parte statica) e un ambiente
+
+Implementazione di funExpr val() { return new ClosureVal(env, this)}
+
+
+m(x,y)(nil, 4): se la prima è una closure, posso fare un richiamo su m; se anche la seconda lo è, posso fare un secondo richiamo
+
+m(4, x+y)("a")
+InvokeExpr
+	expr: InvokeExpr
+		expr: m
+		args: (4, x + y)
+	args: ("a")
+	
+	
+eval di InvokeExpr: (attributi: Expr expr; ExprList args;
+	return expr.eval(env).checkClosure().apply(args.eval(env));
+
+Val apply(List<Val> argVals)
+{
+	return funExpr.code().eval(new Env(new Frame(funExpr.params(), funExpr.locals(), argVals), env));
+}
+
+Frame inscatola una mappa
+Frame (List<String> params, List<String>, List<Val> argVals)
+{
+		checkArity(params, argVals); //controllo che params e argVals contengano lo stesso numero di elementi; i valori di argVals vano associati agli id contenuti in params
+		for(int i=0;i<params.size;i++)
+			binding.put(params.get(i), args.get(i));
+		for(int i, locals.size;)
+			bindings.put(locals.get(i), NilVal.nil);
+}
+
+Valutare una FunExpr significa creare una closure (la closure esiste solo a runtime). Closure: funzione con ambiente
+
+apply su una closure significa ingrandire l'ambiente con i parametri della closure stessa ed inizializzare i parametri con gli argomenti.
+Il codice viene poi valutato in questo nuovo ambiente
+
+Env
+	private Frame frame; //inscatola mappa e aggiunge metodi
+	private Env env; //amiente circostante
+	
+	Val getVal(string id)
+	{
+		frame.contains(id) then return else env.getVal(id);
+	}
+	
+	Val setVal(string id, Val val)
+	{
+		stessa cosa sopra ma setto
+	}
+	
+	
+	
+Val
+
+	BoolVal checkBool() { return this; } //questa implentazione in BoolVal; in Val come comportamento predefinito solleva eccezione
+	
+	ClosureVal checkClosure
+	
+	Val plus(Val arg)
+	{
+		if(arg.isString)
+		{
+			//concatenazione di stringhe
+		}
+	}
+	
+ExprList contiene List<Expr> exprs;
+
+List<Val> eval(Env env)
+{
+	return exprs.stream().map(expr->expr.eval(env)).collect(Collectors.toList());
