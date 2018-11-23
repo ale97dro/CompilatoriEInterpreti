@@ -1,14 +1,17 @@
 package parser.expression;
 
+import parser.EvalException;
 import tokenizer.Type;
 
 public class BoolVal extends Val {
-    public BoolVal(Type tokenType) {
-        super(tokenType);
+    private Type boolType;
+
+    public BoolVal(Type boolType) {
+        this.boolType = boolType;
     }
 
     @Override
-    Val eval(Env env) {
-        return null;
+    public BoolVal checkBool() throws EvalException {
+        return this;
     }
 }

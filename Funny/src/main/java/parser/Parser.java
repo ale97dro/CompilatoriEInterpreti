@@ -1,6 +1,5 @@
 package parser;
 
-import com.sun.deploy.security.ValidationState;
 import parser.expression.*;
 import tokenizer.Tokenizer;
 import tokenizer.Token;
@@ -8,6 +7,7 @@ import tokenizer.Type;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +15,8 @@ public class Parser
 {
     private Tokenizer tokenizer;
     private Token token;
+    private NilVal nil;
+
 
     public Parser(Reader reader)
     {
@@ -38,6 +40,7 @@ public class Parser
 
     public Expr execute() throws ParserException, IOException //==program
     {
+        nil = NilVal.instance();
         Expr expr = function(null);
         check(Type.EOS, token.getType());
 
@@ -85,7 +88,7 @@ public class Parser
 
         checkAndNext(Type.BRACECLOSE, tokenType());
 
-        return expr;
+        return new FunExpr(params, locals, expr);
     }
 
     private List<String> optParams(Scope scope) throws IOException, ParserException
@@ -107,7 +110,7 @@ public class Parser
         if(tokenType() == Type.ARROW)
             return sequence(scope);
 
-        return null;
+        return nil;
     }
 
     private List<String> optIds(Scope scope) throws ParserException, IOException {
@@ -134,6 +137,7 @@ public class Parser
         return token.getStringValue();
     }
 
+    //todo: ritona lista?
     private Expr sequence(Scope scope) throws IOException, ParserException
     {
         Expr expr = optAssignment(scope);
@@ -143,7 +147,7 @@ public class Parser
             expr = new SeqExpr(expr, optAssignment(scope)); //cosa devo mettere dentro sequence? lista di assignment
         }
 
-        return null;
+        return nil;
     }
 
 
@@ -153,7 +157,7 @@ public class Parser
         if(isAssignment())
             return assignment(scope);
         else
-            return null;
+            return nil;
     }
 
     private boolean isAssignment()
@@ -330,66 +334,6 @@ public class Parser
         }
 
         return expr;
-
-    }
-
-    private Expr primary(Scope scope) throws ParserException, IOException {
-        switch(token.getType())
-        {
-            case NUM:
-                return getNumber(scope);
-            case TRUE:
-            case FALSE:
-                return getBoolean(scope);
-            case NIL:
-                return getNil(scope);
-            case STRING:
-                return getString(scope);
-            case ID:
-                return getId(scope);
-            case IF:
-            case IFNOT:
-                return getIf(scope);
-            case WHILE:
-            case WHILENOT:
-                return getWhile(scope);
-            case PRINT:
-            case PRINTLN:
-                return getPrint(scope);
-            case BRACKETOPEN:
-                return function(scope);
-            case BRACEOPEN:
-                return getSubSequence(scope);
-            default:
-                throw new ParserException("Error while parsing");
-        }
-    }
-
-    private Expr getNumber(Scope scope) {
-    }
-
-    private Expr getBoolean(Scope scope) {
-    }
-
-    private Expr getNil(Scope scope) {
-    }
-
-    private Expr getString(Scope scope) {
-    }
-
-    private Expr getId(Scope scope) {
-    }
-
-    private Expr getIf(Scope scope) {
-    }
-
-    private Expr getWhile(Scope scope) {
-    }
-
-    private Expr getPrint(Scope scope) {
-    }
-
-    private Expr getSubSequence(Scope scope) {
     }
 
     private ExprList args(Scope scope) throws IOException, ParserException
@@ -410,5 +354,132 @@ public class Parser
         checkAndNext(Type.BRACKETCLOSE, token.getType());
 
         return list;
+    }
+
+    private Expr primary(Scope scope) throws ParserException, IOException {
+        switch(token.getType())
+        {
+            case NUM:
+                return getNumber(scope);
+            case TRUE:
+            case FALSE:
+                return getBoolean(scope);
+            case NIL:
+                return getNil(scope);
+            case STRING:
+                return getString(scope);
+            case ID:
+                return getId(scope);
+            case IF:
+            case IFNOT:
+                return getCond(scope);
+            case WHILE:
+            case WHILENOT:
+                return getLoop(scope);
+            case PRINT:
+            case PRINTLN:
+                return getPrint(scope);
+            case BRACKETOPEN:
+                return function(scope);
+            case BRACEOPEN:
+                return getSubSequence(scope);
+            default:
+                throw new ParserException("Error while parsing");
+        }
+    }
+
+    private Val getNumber(Scope scope) throws ParserException, IOException {
+        BigDecimal value = token.getDecimalValue();
+        checkAndNext(Type.NUM, token.getType());
+        return new NumVal(value);
+    }
+
+    private Expr getBoolean(Scope scope) throws ParserException, IOException {
+
+        if(token.getType() == Type.TRUE || token.getType() == Type.FALSE)
+        {
+            Type value = token.getType();
+            next();
+            return new BoolVal(value);
+        }
+        throw new ParserException("Parsing error");
+    }
+
+    private Expr getNil(Scope scope) throws ParserException, IOException {
+        checkAndNext(Type.NIL, token.getType());
+        return nil;
+    }
+
+    private Expr getString(Scope scope) throws ParserException, IOException {
+        String value = token.getStringValue();
+        checkAndNext(Type.STRING, token.getType());
+        return new StringVal(value);
+    }
+
+    private Expr getId(Scope scope) throws ParserException, IOException {
+        String id = token.getStringValue();
+        checkAndNext(Type.ID, token.getType());
+        checkInScope(scope, id);
+        return new GetVarExpr(id);
+    }
+
+    private Expr getCond(Scope scope) throws IOException, ParserException {
+        if(token.getType() == Type.IF || token.getType() == Type.IFNOT)
+        {
+            Type ifType = token.getType();
+            next();
+            Expr cond = sequence(scope);
+            checkAndNext(Type.THEN, token.getType());
+            Expr then = sequence(scope);
+
+            Expr _else = null;
+
+            if(Type.ELSE == token.getType())
+            {
+                next();
+                _else = sequence(scope);
+            }
+
+            checkAndNext(Type.FI, token.getType());
+            return new IfExpr(cond, then, _else, ifType);
+        }
+
+        throw new ParserException("Parsing error");
+    }
+
+    private Expr getLoop(Scope scope) throws IOException, ParserException {
+        if(token.getType() == Type.WHILENOT || token.getType() == Type.WHILE)
+        {
+            Type loopType = token.getType();
+            next();
+            Expr cond = sequence(scope);
+
+            Expr _do = null;
+
+            if(token.getType() == Type.DO)
+            {
+                next();
+                _do = sequence(scope);
+            }
+
+            checkAndNext(Type.OD, token.getType());
+            return new WhileExpr(cond, _do, loopType);
+        }
+
+        throw new ParserException("Parsing error");
+    }
+
+    private Expr getPrint(Scope scope) throws IOException, ParserException {
+        if(token.getType() == Type.PRINT || token.getType() == Type.PRINTLN)
+        {
+            Type printType = token.getType();
+            return new PrintExpr(args(scope), printType);
+        }
+
+        throw new ParserException("Parsing error");
+    }
+
+    private Expr getSubSequence(Scope scope) {
+        return null;
     }
 }

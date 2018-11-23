@@ -21,7 +21,15 @@ public class ExprList {
 
     public List<Val> eval(Env env)
     {
-        return list.stream().map(expr->expr.eval(env)).collect(Collectors.toList());
+        try
+        {
+            return list.stream().map(expr->expr.eval(env)).collect(Collectors.toList());
+
+        }
+        catch (Exception ex)
+        {
+            throw ex;
+        }
     }
 
     public List<Expr> toList()

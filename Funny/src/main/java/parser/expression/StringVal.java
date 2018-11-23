@@ -1,14 +1,20 @@
 package parser.expression;
 
+import parser.EvalException;
 import tokenizer.Type;
 
 public class StringVal extends Val {
-    public StringVal(Type tokenType) {
-        super(tokenType);
+    private String value;
+
+    public StringVal(String value)
+    {
+        this.value = value;
     }
 
+    public String getValue() { return value;}
+
     @Override
-    Val eval(Env env) {
-        return null;
+    public StringVal checkString() throws EvalException {
+        return this;
     }
 }

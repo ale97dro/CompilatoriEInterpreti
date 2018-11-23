@@ -3,12 +3,17 @@ package parser.expression;
 import tokenizer.Type;
 
 public class UnaryExpr extends Expr {
+
+    private Type operation;
+    private Expr expression;
+
     public UnaryExpr(Type operation, Expr unary) {
-        super();
+        this.operation = operation;
+        this.expression = unary;
     }
 
     @Override
-    Val eval(Env env) {
+    public Val eval(Env env) {
         return null;
     }
 }

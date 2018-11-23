@@ -13,8 +13,9 @@ public class SetVarExpr extends Expr {
         this.operation = operation;
         this.expression = expression;
     }
+
     @Override
-    Val eval(Env env) {
+    public Val eval(Env env) {
         return null;
     }
 }

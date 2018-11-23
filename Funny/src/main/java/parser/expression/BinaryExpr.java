@@ -15,7 +15,7 @@ public class BinaryExpr extends Expr {
         this.rexpr = rexpr;
     }
     @Override
-    Val eval(Env env) {
+    public Val eval(Env env) {
         return null;
     }
 }
