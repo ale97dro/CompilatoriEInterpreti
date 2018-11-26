@@ -2,51 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c2494fd-739c-4c69-bb29-bf1d8788972e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Appunti/Interprete.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Appunti/Interprete.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/Parser$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/Parser$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/Parser.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/AssignmentExpr.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/BinaryExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/BinaryExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/BoolVal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/BoolVal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/ClosureVal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/ClosureVal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/Expr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/Expr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/FunExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/FunExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/GetVarExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/GetVarExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/IfExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/IfExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/InvokeExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/InvokeExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/NilVal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/NilVal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/NumVal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/NumVal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/OptExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/OptExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/PrintExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/PrintExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/SeqExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/SeqExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/SetVarExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/SetVarExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/StringVal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/StringVal.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/UnaryExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/UnaryExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/Val.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/Val.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/expression/WhileExpr.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/expression/WhileExpr.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/ExprList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/ExprList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/Parser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/BinaryExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/BinaryExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/BoolVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/BoolVal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/ClosureVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/ClosureVal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/Env.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/Env.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/Expr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/Expr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/FunExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/FunExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/GetVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/GetVarExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/IfExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/IfExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/InvokeExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/InvokeExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/NilVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/NilVal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/NumVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/NumVal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/OptExpr.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/PrintExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/PrintExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/SeqExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/SeqExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/SetVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/SetVarExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/StringVal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/StringVal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/UnaryExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/UnaryExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/Val.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/Val.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/WhileExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/WhileExpr.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -100,7 +57,7 @@
     <session id="-270728971">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="19" />
+          <entry key="project.closed" value="20" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.1" value="6" />
           <entry key="project.open.time.11" value="1" />
@@ -151,8 +108,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/parser/ExprList.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+            <state relative-caret-position="527">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#546#547#0" expanded="true" />
@@ -453,7 +410,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542987096203" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542987144113" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../labingsw022018201904bthread" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -562,7 +519,7 @@
       <workItem from="1542318657644" duration="1427000" />
       <workItem from="1542366634644" duration="13126000" />
       <workItem from="1542628511354" duration="155000" />
-      <workItem from="1542975535842" duration="10968000" />
+      <workItem from="1542975535842" duration="11016000" />
     </task>
     <servers />
   </component>
@@ -584,7 +541,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="77406000" />
+    <option name="totallyTimeSpent" value="77454000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -597,9 +554,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.61755145" visible="true" weight="0.20788912" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61755145" visible="true" weight="0.20788912" />
       <window_info id="Structure" order="1" sideWeight="0.38244852" side_tool="true" weight="0.19722815" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -615,9 +571,9 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32936078" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49946696" weight="0.26435536" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49946696" visible="true" weight="0.26435536" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50053304" side_tool="true" weight="0.26435536" />
-      <window_info anchor="bottom" id="Messages" order="11" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32936078" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1093,8 +1049,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/parser/ExprList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="25" column="50" lean-forward="true" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+        <state relative-caret-position="527">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#546#547#0" expanded="true" />
