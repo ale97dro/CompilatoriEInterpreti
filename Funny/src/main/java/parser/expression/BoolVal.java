@@ -10,6 +10,12 @@ public class BoolVal extends Val {
         this.boolType = boolType;
     }
 
+
+    public Type getValue()
+    {
+        return boolType;
+    }
+
     @Override
     public BoolVal checkBool() throws EvalException {
         return this;

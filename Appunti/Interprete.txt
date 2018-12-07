@@ -57,7 +57,7 @@ InvokeExpr
 eval di InvokeExpr: (attributi: Expr expr; ExprList args;
 	return expr.eval(env).checkClosure().apply(args.eval(env));
 
-Val apply(List<Val> argVals)
+Val apply(List<Val> argVals) //closure val
 {
 	return funExpr.code().eval(new Env(new Frame(funExpr.params(), funExpr.locals(), argVals), env));
 }

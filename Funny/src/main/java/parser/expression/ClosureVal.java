@@ -22,12 +22,7 @@ public class ClosureVal extends Val {
     }
 
     @Override
-    public Val eval(Env env) {
-        return null;
-    }
-
-    @Override
-    public ClosureVal checkClosure() throws EvalException {
+    public ClosureVal checkClosure() {
         return this;
     }
 

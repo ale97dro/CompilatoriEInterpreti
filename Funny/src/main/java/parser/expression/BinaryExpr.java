@@ -1,5 +1,6 @@
 package parser.expression;
 
+import parser.EvalException;
 import tokenizer.Type;
 
 public class BinaryExpr extends Expr {
@@ -15,7 +16,25 @@ public class BinaryExpr extends Expr {
         this.rexpr = rexpr;
     }
     @Override
-    public Val eval(Env env) {
-        return null;
+    public Val eval(Env env) throws EvalException
+    {
+        Val lval = lexpr.eval(env);
+        Val rval = rexpr.eval(env);
+
+        switch(operation)
+        {
+            case PLUS:
+                return lval.plus(rval);
+            case MINUS:
+                return lval.minus(rval);
+            case STAR:
+                return lval.times(rval);
+            case SLASH:
+                return lval.division(rval);
+            case PERCENTAGE:
+                return lval.module(rval);
+            default:
+                throw new EvalException("Binary");
+        }
     }
 }

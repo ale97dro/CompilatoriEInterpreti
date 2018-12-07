@@ -29,6 +29,27 @@ public abstract class Val extends Expr{
     }
 
 
+    public Val plus(Val arg) throws EvalException {
+        throw new EvalException("Plus");
+    }
+
+    public Val minus(Val arg) throws EvalException {
+        throw new EvalException("Plus");
+    }
+
+    public Val times(Val arg) throws EvalException {
+        throw new EvalException("Plus");
+    }
+
+    public Val division(Val arg) throws EvalException {
+        throw new EvalException("Plus");
+    }
+
+    public Val module(Val arg) throws EvalException {
+        throw new EvalException("Plus");
+    }
+
+
     @Override
     public Val eval(Env env) {
         return this;

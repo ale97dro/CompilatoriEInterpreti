@@ -1,5 +1,7 @@
 package parser.expression;
 
+import com.sun.deploy.security.ValidationState;
+import parser.EvalException;
 import tokenizer.Type;
 
 public class IfExpr extends Expr {
@@ -29,9 +31,49 @@ public class IfExpr extends Expr {
         this.type = ifType;
     }
 
+   @Override
+   public Val eval(Env env) throws EvalException
+    {
+        if(type == Type.AND || type == Type.OR)
+        {
+            BoolVal eval1 = condition.eval(env).checkBool();
+            BoolVal eval2 = then.eval(env).checkBool();
 
-    @Override
-   public Val eval(Env env) {
-        return null;
+            //TODO implementa
+            switch(type)
+            {
+                case AND:
+
+                case OR:
+            }
+
+        }
+        else
+        {
+            if(type == Type.IF || type == Type.IFNOT)
+            {
+                BoolVal eval_condition = condition.eval(env).checkBool();
+
+                if(eval_condition.getValue() == Type.TRUE && type == Type.IF)
+                    return then.eval(env);
+
+                if(eval_condition.getValue() == Type.FALSE && type == Type.IF)
+                    if(_else != null)
+                        return _else.eval(env);
+                    else
+                        return NilVal.instance();
+
+                if(eval_condition.getValue() == Type.TRUE && type == Type.IFNOT)
+                    if(_else != null)
+                        return _else.eval(env);
+                    else
+                        return NilVal.instance();
+
+                if(eval_condition.getValue() == Type.FALSE && type == Type.IFNOT)
+                    return then.eval(env);
+            }
+        }
+
+        throw new EvalException("If expression");
     }
 }

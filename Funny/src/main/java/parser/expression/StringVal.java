@@ -17,4 +17,16 @@ public class StringVal extends Val {
     public StringVal checkString() throws EvalException {
         return this;
     }
+
+    @Override
+    public StringVal plus(Val arg) throws EvalException {
+        try
+        {
+            return new StringVal(value + arg.checkString().value);
+        }
+        catch (EvalException e)
+        {
+            return new StringVal(value + arg.checkNum().getNumber().toString());
+        }
+    }
 }

@@ -25,4 +25,20 @@ public class Frame {
     }
 
     //TODO: implementa metodi per rcuperare i valori della mappa
+
+    public Val getValue(String id) throws EvalException
+    {
+        if(binding.keySet().contains(id))
+            return binding.get(id);
+
+        return null;
+    }
+
+    public void addValue(String id, Val value) throws EvalException
+    {
+        if(binding.containsKey(id))
+            binding.replace(id, value);
+
+        throw new EvalException("add");
+    }
 }
