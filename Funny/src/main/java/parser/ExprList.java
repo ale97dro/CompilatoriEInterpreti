@@ -23,13 +23,15 @@ public class ExprList {
     {
         try
         {
-            return list.stream().map(expr->expr.eval(env)).collect(Collectors.toList());
+            //return list.stream().map(expr->expr.eval(env)).collect(Collectors.toList());
 
         }
         catch (Exception ex)
         {
             throw ex;
         }
+
+        return null;
     }
 
     public List<Expr> toList()
