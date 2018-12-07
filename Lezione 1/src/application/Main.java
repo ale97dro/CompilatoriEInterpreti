@@ -47,5 +47,23 @@ public class Main
 
         System.out.println(y.width());
         System.out.println(y.height());
+
+        //ESPE
+        parser = new Parser(new StringReader("7*8|((2*3-7*5)|5*4)")); //una parentesi di troppo  mette parentesi all'ultima operazione
+        Block result = parser.expr();
+        System.out.println(result.toString());
+        parser = new Parser(new StringReader("7*8|(2*3|(7*5-5*4))")); //mantiene parentesi anche se non necessaria
+         result = parser.expr();
+        System.out.println(result.toString());
+        parser = new Parser(new StringReader("7*8|5*4-4*5")); //mette le parentesi anche se non necessarie per la priorità di -
+         result = parser.expr();
+        System.out.println(result.toString());
+        parser = new Parser(new StringReader("3*4-(4*5-5*6)")); //non mette le parentesi per albero pendente a destra
+         result = parser.expr();
+        System.out.println(result.toString());
+        parser = new Parser(new StringReader("3*4|(4*5-5*6)")); //ok
+         result = parser.expr();
+
+        System.out.println(result.toString());
     }
 }

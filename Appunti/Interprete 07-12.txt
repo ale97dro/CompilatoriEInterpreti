@@ -1,0 +1,3 @@
+apply closure
+
+return funeExprcode().eval(new Enve(new Frame(funExpr.params(), funExpr.locals()

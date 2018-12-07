@@ -31,4 +31,12 @@ public class HorizBlock extends Block
         //massimo tra i due
         return Math.max(left.height(), right.height());
     }
+
+    @Override
+    public String toString()
+    {
+       // return left.toString()+" - ("+right.toString()+")";
+        return left.toString()+" - "+right.toString();
+        //return "("+left.toString()+") - "+right.toString();
+    }
 }

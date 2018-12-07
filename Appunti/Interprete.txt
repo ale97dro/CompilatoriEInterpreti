@@ -41,7 +41,7 @@ SetVarExpr
 ClosureVal attributi: env e funExpr
 Closure: valore che rappresenta l'associazione di una funzione (parte statica) e un ambiente
 
-Implementazione di funExpr val() { return new ClosureVal(env, this)}
+Implementazione di funExpr eval() { return new ClosureVal(env, this)}
 
 
 m(x,y)(nil, 4): se la prima è una closure, posso fare un richiamo su m; se anche la seconda lo è, posso fare un secondo richiamo

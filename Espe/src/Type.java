@@ -1,4 +1,9 @@
-package PACKAGE_NAME;
-
-public class Type {
+public enum Type
+{
+    OPEN,
+    CLOSE,
+    ETICHETTA,
+    TESTO,
+    DUEPUNTI,
+    EOS;
 }

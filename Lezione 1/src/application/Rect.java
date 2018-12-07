@@ -33,4 +33,10 @@ public class Rect extends Block
     {
         return altezza;
     }
+
+    @Override
+    public String toString()
+    {
+        return lunghezza+"*"+altezza;
+    }
 }

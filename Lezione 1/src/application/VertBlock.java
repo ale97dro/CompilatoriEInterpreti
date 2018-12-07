@@ -31,4 +31,14 @@ public class VertBlock extends Block
         //somma
         return top.height()+bottom.height();
     }
+
+    @Override
+    public String toString()
+    {
+        StringBuilder str = new StringBuilder();
+
+
+        //return "("+top.toString() + ") | "+ bottom.toString();
+        return top.toString() + " | ("+ bottom.toString()+")";
+    }
 }

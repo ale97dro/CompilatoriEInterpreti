@@ -1,0 +1,20 @@
+blocks language (EBNF)
+
+
+
+Productions (rules)
+-------------------
+
+Expr ::= VertExpr Eos .
+VertExpr ::= HorizExpr ("|" HorizExpr)* .
+HorizExpr ::= PrimaryExpr ("-" PrimaryExpr)* .
+PrimaryExpr ::= ParenExpr | RectExpr .
+ParenExpr ::= "(" VertExpr ")" .
+RectExpr ::= Num "*" Num .
+
+
+
+Terminals (tokens)
+------------------
+
+Eos, Num, "|", "-", "*", ")", "("

@@ -1,4 +1,12 @@
 package Exception;
 
-public class ParserException {
+public class ParserException extends Exception {
+    public ParserException(String message)
+    {
+        super(message);
+    }
+
+    public ParserException() {
+
+    }
 }

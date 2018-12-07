@@ -1,0 +1,31 @@
+Tokens of Funny
+
+Except in strings and ids, all other characters are ASCII
+
+----
+
+nil false true
+if ifnot then else fi
+while whilenot do od
+print println
+
+id num string
+// id is as in Java
+// num is as in BigDecimal
+// string is as in Java
+
+; , ->
+
+( )
+{ }
+!
+* / %
++ -
+< <= > >=
+== !=
+&&
+||
+= += -= *= /= %=
+
+Eos
+Unknown
