@@ -1,7 +1,6 @@
 package parser.expression;
 
 import parser.EvalException;
-import tokenizer.Type;
 
 import java.math.BigDecimal;
 
@@ -46,5 +45,11 @@ public class NumVal extends Val {
     @Override
     public Val module(Val arg) throws EvalException {
         return new NumVal(number.remainder(arg.checkNum().number));
+    }
+
+    @Override
+    public String toString()
+    {
+        return number.toString();
     }
 }

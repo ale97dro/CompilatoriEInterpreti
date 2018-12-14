@@ -28,4 +28,10 @@ public class NilVal extends Val {
     public NilVal checkNil() throws EvalException {
         return this;
     }
+
+    @Override
+    public String toString()
+    {
+        return "nil";
+    }
 }

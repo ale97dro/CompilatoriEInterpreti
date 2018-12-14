@@ -23,8 +23,7 @@ public class Parser
         tokenizer = new Tokenizer(reader);
     }
 
-    private void next() throws IOException
-    {
+    private void next() throws IOException {
         token = tokenizer.next();
     }
 
@@ -33,14 +32,14 @@ public class Parser
         return token.getType();
     }
 
-    private void previous()
-    {
+    private void previous() throws IOException {
         tokenizer.previous();
     }
 
     public Expr execute() throws ParserException, IOException //==program
     {
         nil = NilVal.instance();
+        next();
         Expr expr = function(null);
         check(Type.EOS, token.getType());
 
@@ -52,8 +51,7 @@ public class Parser
             throw new ParserException("Parsing error");
     }
 
-    private void checkAndNext(Type expected, Type actual) throws ParserException, IOException
-    {
+    private void checkAndNext(Type expected, Type actual) throws ParserException, IOException {
         if(expected != actual)
             throw new ParserException("Parsing error");
         next();
@@ -73,31 +71,37 @@ public class Parser
     /////////////////////////////////////
     //////////// GRAMMATICA ////////////
     ///////////////////////////////////
-    private Expr function(Scope scope) throws ParserException, IOException
-    {
-        checkAndNext(Type.BRACEOPEN, tokenType());
+    private Expr function(Scope scope) throws ParserException, IOException {
+        //checkAndNext(Type.GRAFFAOPEN, tokenType());
+        checkAndNext(Type.GRAFFAOPEN, tokenType());
 
         List<String> params = optParams(scope);
         List<String> locals = optLocals(scope);
         List<String> params_and_locals = new ArrayList<>(params);
         params_and_locals.addAll(locals);
 
-        scope = new Scope(params_and_locals);
+        scope = new Scope(null, params_and_locals);
 
         Expr expr = optSequence(scope);
 
-        checkAndNext(Type.BRACECLOSE, tokenType());
+        checkAndNext(Type.GRAFFACLOSE, tokenType());
 
         return new FunExpr(params, locals, expr);
     }
 
     private List<String> optParams(Scope scope) throws IOException, ParserException
     {
-        checkAndNext(Type.BRACKETOPEN, tokenType());
-        List<String> params = optIds(scope);
-        checkAndNext(Type.BRACKETCLOSE, tokenType());
+        try {
+            checkAndNext(Type.TONDAOPEN, tokenType());
+            List<String> params = optIds(scope);
+            checkAndNext(Type.TONDACLOSE, tokenType());
 
-        return params;
+            return params;
+        }
+        catch (Exception ex)
+        {
+            return new ArrayList<>();
+        }
     }
 
     private List<String> optLocals(Scope scope) throws ParserException, IOException
@@ -108,7 +112,10 @@ public class Parser
     private Expr optSequence(Scope scope) throws IOException, ParserException
     {
         if(tokenType() == Type.ARROW)
+        {
+            next();
             return sequence(scope);
+        }
 
         return nil;
     }
@@ -140,14 +147,23 @@ public class Parser
     //todo: ritona lista?
     private Expr sequence(Scope scope) throws IOException, ParserException
     {
-        Expr expr = optAssignment(scope);
+        List<Expr> exprList = new ArrayList<>();
+
+        exprList.add(optAssignment(scope));
+
+        //Expr expr = optAssignment(scope);
+
         while(isOptAssignment(tokenType()))
         {
             next();
-            expr = new SeqExpr(expr, optAssignment(scope)); //cosa devo mettere dentro sequence? lista di assignment
+            exprList.add(optAssignment(scope));
+            //expr = optAssignment(scope);
+
+            //expr = new SeqExpr(expr, optAssignment(scope)); //cosa devo mettere dentro sequence? lista di assignment
         }
 
-        return nil;
+        return new SeqExpr(exprList);
+        //return nil;
     }
 
 
@@ -173,8 +189,8 @@ public class Parser
             case TRUE:
             case NIL:
             case STRING:
-            case BRACKETOPEN:
-            case BRACEOPEN:
+            case TONDAOPEN:
+            case GRAFFAOPEN:
             case IF:
             case IFNOT:
             case WHILE:
@@ -191,7 +207,7 @@ public class Parser
         //TODO: controllo se il tipo è id o logicalOr; se uno di questi chiamo sotto parser altrimenti ritorno null
         //TODO: se non ho id, logicalOr
         //se ho id, devo controllare anche il carattere dopo: se è uno dei 5, allora poi dopo ho assignment altrimenti logicalOr
-        if(isId(Type.ID))
+        if(isId(token.getType()))
         {
             String id_value = token.getStringValue(); //prendo il valore dell'id
             checkInScope(scope, id_value); //controllo che esista nello scope (altrimenti errore)
@@ -230,7 +246,7 @@ public class Parser
 
     private void checkInScope(Scope scope, String id_value) throws ParserException
     {
-        if(!scope.checkInScope(id_value))
+        if(scope.checkInScope(id_value))
             throw new ParserException("Error");
     }
 
@@ -328,7 +344,7 @@ public class Parser
     private Expr postfix(Scope scope) throws IOException, ParserException {
         Expr expr = primary(scope);
 
-        while(token.getType() == Type.BRACKETOPEN)
+        while(token.getType() == Type.TONDAOPEN)
         {
             expr = new InvokeExpr(expr, args(scope));
         }
@@ -339,9 +355,9 @@ public class Parser
     private ExprList args(Scope scope) throws IOException, ParserException
     {
         ExprList list = new ExprList();
-        checkAndNext(Type.BRACKETOPEN, token.getType());
+        checkAndNext(Type.TONDAOPEN, token.getType());
 
-        if(token.getType() == Type.BRACKETCLOSE)
+        if(token.getType() == Type.TONDACLOSE)
             return list;
 
         list.add(sequence(scope));
@@ -351,7 +367,7 @@ public class Parser
             next();
             list.add(sequence(scope));
         }
-        checkAndNext(Type.BRACKETCLOSE, token.getType());
+        checkAndNext(Type.TONDACLOSE, token.getType());
 
         return list;
     }
@@ -379,9 +395,9 @@ public class Parser
             case PRINT:
             case PRINTLN:
                 return getPrint(scope);
-            case BRACKETOPEN:
+            case GRAFFAOPEN:
                 return function(scope);
-            case BRACEOPEN:
+            case TONDAOPEN:
                 return getSubSequence(scope);
             default:
                 throw new ParserException("Error while parsing");
@@ -473,6 +489,7 @@ public class Parser
         if(token.getType() == Type.PRINT || token.getType() == Type.PRINTLN)
         {
             Type printType = token.getType();
+            next();
             return new PrintExpr(args(scope), printType);
         }
 

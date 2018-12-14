@@ -1,7 +1,6 @@
 package parser.expression;
 
 import parser.EvalException;
-import tokenizer.Type;
 
 public class StringVal extends Val {
     private String value;
@@ -28,5 +27,11 @@ public class StringVal extends Val {
         {
             return new StringVal(value + arg.checkNum().getNumber().toString());
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        return value;
     }
 }

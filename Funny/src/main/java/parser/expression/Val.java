@@ -1,7 +1,6 @@
 package parser.expression;
 
 import parser.EvalException;
-import tokenizer.Type;
 
 public abstract class Val extends Expr{
     public Val() { }

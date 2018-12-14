@@ -19,7 +19,6 @@ public class Tokenizer {
     private int c;
     private StringBuilder str_builder;
     private boolean token_ready;
-    //private boolean EOS = false;
     private Token current = null;
     private Token previous; //TODO: implementare get e assegnamento
     private boolean previousMode = false;
@@ -54,12 +53,13 @@ public class Tokenizer {
         current = null;
         token_ready = false;
 
-        if(isEOS(c))
-            endOfFile(); //controllo se fine del file
-
         while(!token_ready)
         {
             skipSpace();
+
+            if(isEOS(c))
+                endOfFile(); //controllo se fine del file
+
 
             switch (toChar(c)) {
                 case '+':
@@ -466,7 +466,7 @@ public class Tokenizer {
     }
 
 
-    private Token simpleToken(char _c) //token di un solo carattere che non sono prefissi o suffissi
+    private Token simpleToken(char _c) throws IOException //token di un solo carattere che non sono prefissi o suffissi
     {
         Token temp = null;
 
@@ -479,19 +479,20 @@ public class Tokenizer {
                 temp = new Token(Type.COMMA);
                 break;
             case '(':
-                temp = new Token(Type.BRACKETOPEN);
+                temp = new Token(Type.TONDAOPEN);
                 break;
             case ')':
-                temp = new Token(Type.BRACKETCLOSE);
+                temp = new Token(Type.TONDACLOSE);
                 break;
             case '{':
-                temp = new Token(Type.BRACEOPEN);
+                temp = new Token(Type.GRAFFAOPEN);
                 break;
             case '}':
-                temp = new Token(Type.BRACECLOSE);
+                temp = new Token(Type.GRAFFACLOSE);
                 break;
         }
 
+        //next();
         return temp;
     }
 
@@ -579,8 +580,20 @@ public class Tokenizer {
         return c == '.';
     }
 
-    private boolean isEOS(int c)
-    {
-        return c == -1;
+    private boolean isEOS(int _c) throws IOException {
+        int temp = _c;
+        markAndRead();
+
+        if(_c == -1) {
+            //throw new TokenizerException("EOS");
+            return true;
+        }
+        else
+        {
+            _c = temp;
+            this.c = temp;
+            reset();
+            return false;
+        }
     }
 }

@@ -20,4 +20,10 @@ public class BoolVal extends Val {
     public BoolVal checkBool() throws EvalException {
         return this;
     }
+
+    @Override
+    public String toString()
+    {
+        return boolType.toString();
+    }
 }

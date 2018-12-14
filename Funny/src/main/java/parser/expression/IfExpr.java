@@ -1,6 +1,5 @@
 package parser.expression;
 
-import com.sun.deploy.security.ValidationState;
 import parser.EvalException;
 import tokenizer.Type;
 
@@ -42,9 +41,9 @@ public class IfExpr extends Expr {
             //TODO implementa
             switch(type)
             {
-                case AND:
+                case AND: //se entrambe le condizioni sono vere, torno vero
 
-                case OR:
+                case OR: //se almeno una condizione è vera, torno vero
             }
 
         }
@@ -55,25 +54,26 @@ public class IfExpr extends Expr {
                 BoolVal eval_condition = condition.eval(env).checkBool();
 
                 if(eval_condition.getValue() == Type.TRUE && type == Type.IF)
-                    return then.eval(env);
+                    then.eval(env);
 
                 if(eval_condition.getValue() == Type.FALSE && type == Type.IF)
                     if(_else != null)
-                        return _else.eval(env);
+                        _else.eval(env);
                     else
-                        return NilVal.instance();
+                        NilVal.instance();
 
                 if(eval_condition.getValue() == Type.TRUE && type == Type.IFNOT)
                     if(_else != null)
-                        return _else.eval(env);
+                        _else.eval(env);
                     else
-                        return NilVal.instance();
+                        NilVal.instance();
 
                 if(eval_condition.getValue() == Type.FALSE && type == Type.IFNOT)
-                    return then.eval(env);
+                    then.eval(env);
             }
         }
 
-        throw new EvalException("If expression");
+        //throw new EvalException("If expression");
+        return NilVal.instance();
     }
 }

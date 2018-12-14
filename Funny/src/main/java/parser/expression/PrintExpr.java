@@ -3,6 +3,8 @@ package parser.expression;
 import parser.ExprList;
 import tokenizer.Type;
 
+import java.util.List;
+
 public class PrintExpr extends Expr {
 
     private Type printType;
@@ -14,7 +16,21 @@ public class PrintExpr extends Expr {
     }
 
     @Override
-    public Val eval(Env env) {
-        return null;
+    public Val eval(Env env)
+    {
+        List<Val> valued_args = args.eval(env);
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(Val v : valued_args)
+            stringBuilder.append(v.toString());
+
+        if(printType == Type.PRINT)
+            System.out.print(stringBuilder.toString());
+        else
+            if(printType == Type.PRINTLN)
+                System.out.println(stringBuilder.toString());
+
+        return NilVal.instance();
     }
 }
