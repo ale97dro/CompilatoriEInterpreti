@@ -1,5 +1,7 @@
 package parser.expression;
 
+import parser.EvalException;
+
 public class GetVarExpr extends Expr {
 
     private String id;
@@ -9,7 +11,7 @@ public class GetVarExpr extends Expr {
     }
 
     @Override
-    public Val eval(Env env) {
-        return null;
+    public Val eval(Env env) throws EvalException {
+        return env.getVal(id);
     }
 }

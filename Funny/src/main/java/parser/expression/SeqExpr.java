@@ -1,12 +1,14 @@
 package parser.expression;
 
+import parser.EvalException;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SeqExpr extends Expr {
 
     //private Expr expr;
-    private Expr optAssignment; //TODO: deve essere una lista?
+    //private Expr optAssignment; //TODO: deve essere una lista?
 
     private List<Expr> exprList;
 
@@ -31,7 +33,12 @@ public class SeqExpr extends Expr {
     }
 
     @Override
-    public Val eval(Env env) {
-        return null; //TODO implementare
+    public Val eval(Env env) throws EvalException {
+        //return null; //TODO implementare
+
+        for(Expr e : exprList)
+            return e.eval(env);
+
+        return NilVal.instance();
     }
 }

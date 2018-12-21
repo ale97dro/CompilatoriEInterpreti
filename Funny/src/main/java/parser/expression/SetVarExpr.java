@@ -1,5 +1,6 @@
 package parser.expression;
 
+import parser.EvalException;
 import tokenizer.Type;
 
 public class SetVarExpr extends Expr {
@@ -15,7 +16,8 @@ public class SetVarExpr extends Expr {
     }
 
     @Override
-    public Val eval(Env env) {
-        return null; //todo: implementa
+    public Val eval(Env env) throws EvalException {
+        env.setVal(id, expression.eval(env));
+        return NilVal.instance();
     }
 }

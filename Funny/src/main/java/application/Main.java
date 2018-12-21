@@ -1,7 +1,9 @@
 package application;
 
+import parser.EvalException;
 import parser.Parser;
 import parser.ParserException;
+import parser.expression.Env;
 import parser.expression.Expr;
 import tokenizer.Tokenizer;
 import tokenizer.Token;
@@ -10,9 +12,10 @@ import tokenizer.Type;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
 
 public class Main {
-    public static void main(String[] args) throws IOException, ParserException {
+    public static void main(String[] args) throws IOException, ParserException, EvalException {
         System.out.println("Hello Funny!");
 
        // tokenizer.tokenizer tokenizer = new tokenizer.tokenizer(new StringReader("{/*ciao c*/(ciao = 4)}"));
@@ -23,7 +26,14 @@ public class Main {
         //Tokenizer tokenizer = new Tokenizer(new StringReader("/*ciao*/println(/*bella*/from, \" -> \", to);"));
         //Tokenizer tokenizer = new Tokenizer(new StringReader("0.4.5"));
         Tokenizer tokenizer = new Tokenizer(new StringReader("{ifnot while n < 10 do ciao od"));
-        tokenizer = new Tokenizer(new StringReader("{->print(\"Hello world\");}"));
+
+
+        String program = "{->print(\"Hello world\"); print(\"seconda stampa\"); print(\"Hi!\", \"\\n\");}";
+        program="{->print(4+5, \" ciao\");}";
+        program = "{->print(\"Hello World\");}";
+        program = "{-> x=5; print(x);}";
+
+        tokenizer = new Tokenizer(new StringReader(program));
         Token temp = null;
 
         do
@@ -33,11 +43,13 @@ public class Main {
         }
         while(temp.getType() != Type.EOS);
 
-        String program = "{->print(\"Hello world\"); print(\"seconda stampa\"); print(\"Hi!\", \"\\n\");}";
-        program="{->print(4+5);}";
+
+
+
         Expr parsata = new Parser(new StringReader(program)).execute();
 
-        System.out.println("Ok");
+        //parsata.eval(null).checkClosure().apply(new ArrayList<>());
+        //System.out.println("Ok");
 
 
 
