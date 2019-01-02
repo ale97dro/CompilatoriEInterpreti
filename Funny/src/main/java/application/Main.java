@@ -10,6 +10,7 @@ import tokenizer.Token;
 import tokenizer.TokenizerException;
 import tokenizer.Type;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -31,9 +32,12 @@ public class Main {
         String program = "{->print(\"Hello world\"); print(\"seconda stampa\"); print(\"Hi!\", \"\\n\");}";
         program="{->print(4+5, \" ciao\");}";
         program = "{->print(\"Hello World\");}";
-        program = "{-> x=5; print(x);}";
+        program = "{x y-> x=5; y = x+1; print(x);}";
 
-        tokenizer = new Tokenizer(new StringReader(program));
+        String path = "D:\\alex2\\Desktop\\funny.txt";
+
+        //tokenizer = new Tokenizer(new StringReader(program));
+        tokenizer = new Tokenizer(new FileReader(path));
         Token temp = null;
 
         do
@@ -46,9 +50,12 @@ public class Main {
 
 
 
-        Expr parsata = new Parser(new StringReader(program)).execute();
+        //Expr parsata = new Parser(new StringReader(program)).execute();
+        Expr parsata = new Parser(new FileReader(path)).execute();
 
-        //parsata.eval(null).checkClosure().apply(new ArrayList<>());
+
+        System.out.println("ciao");
+        parsata.eval(null).checkClosure().apply(new ArrayList<>());
         //System.out.println("Ok");
 
 

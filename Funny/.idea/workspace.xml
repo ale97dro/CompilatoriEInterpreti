@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="1c2494fd-739c-4c69-bb29-bf1d8788972e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Funny/application/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/application/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/Parser$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/Parser$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Funny/parser/Parser.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Funny/parser/Parser.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/Env.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/Env.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/GetVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/GetVarExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/SeqExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/SeqExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/SetVarExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/SetVarExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/parser/expression/Frame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/parser/expression/Frame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tokenizer/Tokenizer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tokenizer/Tokenizer.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,13 +63,14 @@
     <session id="-270728971">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="25" />
+          <entry key="project.closed" value="28" />
           <entry key="project.open.time.0" value="1" />
-          <entry key="project.open.time.1" value="8" />
+          <entry key="project.open.time.1" value="10" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.33" value="1" />
+          <entry key="project.open.time.34" value="1" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.36" value="1" />
           <entry key="project.open.time.37" value="1" />
@@ -77,18 +80,18 @@
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="25" />
+          <entry key="project.opened" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="7" />
-          <entry key="java" value="24226" />
+          <entry key="java" value="24912" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="24226" />
+          <entry key="JAVA" value="24912" />
           <entry key="PLAIN_TEXT" value="7" />
         </counts>
       </usages-collector>
@@ -96,13 +99,13 @@
       <usages-collector id="statistics.spring.boot.run.usages" />
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="233" />
+          <entry key="java" value="240" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="233" />
+          <entry key="JAVA" value="240" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.spring.boot.mvc.usages" />
@@ -110,11 +113,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/application/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="392">
-              <caret line="50" column="10" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
+            <state relative-caret-position="356">
+              <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -125,54 +128,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Frame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="307">
+              <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tokenizer/Tokenizer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="146" selection-start-line="146" selection-end-line="146" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/tokenizer/Token.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="89" selection-start-line="89" selection-end-line="89" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1043#1044#0" expanded="true" />
-                <element signature="e#1078#1079#0" expanded="true" />
-                <element signature="e#1125#1126#0" expanded="true" />
-                <element signature="e#1156#1157#0" expanded="true" />
-                <element signature="e#1769#1770#0" expanded="true" />
-                <element signature="e#1801#1802#0" expanded="true" />
-                <element signature="e#1861#1862#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/SeqExpr.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="27" selection-start-line="27" selection-end-line="27" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#526#527#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -181,8 +140,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
+            <state relative-caret-position="175">
+              <caret line="217" selection-start-line="217" selection-end-line="217" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#396#397#0" expanded="true" />
@@ -199,32 +158,36 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/SetVarExpr.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tokenizer/Tokenizer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+            <state relative-caret-position="424">
+              <caret line="60" column="27" lean-forward="true" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#5795#5796#0" expanded="true" />
+                <element signature="e#5846#5847#0" expanded="true" />
+                <element signature="e#13295#13296#0" expanded="true" />
+                <element signature="e#13327#13328#0" expanded="true" />
+                <element signature="e#13364#13365#0" expanded="true" />
+                <element signature="e#13398#13399#0" expanded="true" />
+                <element signature="e#14161#14162#0" expanded="true" />
+                <element signature="e#14206#14207#0" expanded="true" />
+                <element signature="e#14250#14251#0" expanded="true" />
+                <element signature="e#14294#14295#0" expanded="true" />
+                <element signature="e#14337#14338#0" expanded="true" />
+                <element signature="e#14384#14385#0" expanded="true" />
+                <element signature="e#14427#14428#0" expanded="true" />
+                <element signature="e#14470#14471#0" expanded="true" />
+                <element signature="e#14518#14519#0" expanded="true" />
+                <element signature="e#14549#14550#0" expanded="true" />
+                <element signature="e#14595#14596#0" expanded="true" />
+                <element signature="e#14626#14627#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/NilVal.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#378#379#0" expanded="true" />
-                <element signature="e#409#410#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/parser/Scope.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
@@ -238,13 +201,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Val.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/tokenizer/Token.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="413">
+              <caret line="89" selection-start-line="89" selection-end-line="89" />
               <folding>
-                <element signature="e#1214#1215#0" expanded="true" />
-                <element signature="e#1241#1242#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1043#1044#0" expanded="true" />
+                <element signature="e#1078#1079#0" expanded="true" />
+                <element signature="e#1125#1126#0" expanded="true" />
+                <element signature="e#1156#1157#0" expanded="true" />
+                <element signature="e#1769#1770#0" expanded="true" />
+                <element signature="e#1801#1802#0" expanded="true" />
+                <element signature="e#1861#1862#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -279,8 +248,10 @@
       <find>isOpt</find>
       <find>getp</find>
       <find>optAss</find>
-      <find>sequence</find>
       <find>COMMA</find>
+      <find>checkin</find>
+      <find>checkInScope</find>
+      <find>sequence</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -317,7 +288,6 @@
         <option value="$PROJECT_DIR$/src/main/java/parser/EvalException.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/Expr.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/InvokeExpr.java" />
-        <option value="$PROJECT_DIR$/src/main/java/parser/expression/Frame.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/Val.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/ClosureVal.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/PrintExpr.java" />
@@ -329,16 +299,17 @@
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/BinaryExpr.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/IfExpr.java" />
-        <option value="$PROJECT_DIR$/src/main/java/tokenizer/Tokenizer.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/Scope.java" />
         <option value="$PROJECT_DIR$/src/main/java/tokenizer/Type.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/ExprList.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/FunExpr.java" />
-        <option value="$PROJECT_DIR$/src/main/java/parser/Parser.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/SetVarExpr.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/GetVarExpr.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/Env.java" />
         <option value="$PROJECT_DIR$/src/main/java/parser/expression/SeqExpr.java" />
+        <option value="$PROJECT_DIR$/src/main/java/parser/Parser.java" />
+        <option value="$PROJECT_DIR$/src/main/java/tokenizer/Tokenizer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/parser/expression/Frame.java" />
         <option value="$PROJECT_DIR$/src/main/java/application/Main.java" />
       </list>
     </option>
@@ -439,7 +410,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1545399429528" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1546263425109" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../labingsw022018201904bthread" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -553,7 +524,10 @@
       <workItem from="1544790153840" duration="3460000" />
       <workItem from="1544793641581" duration="7779000" />
       <workItem from="1545049295710" duration="41000" />
-      <workItem from="1545394692252" duration="4184000" />
+      <workItem from="1545394692252" duration="4669000" />
+      <workItem from="1545916923495" duration="320000" />
+      <workItem from="1546263354232" duration="275000" />
+      <workItem from="1546435968424" duration="3458000" />
     </task>
     <servers />
   </component>
@@ -575,7 +549,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="101805000" />
+    <option name="totallyTimeSpent" value="106343000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -588,9 +562,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61755145" visible="true" weight="0.2249467" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.61755145" visible="true" weight="0.23187633" />
       <window_info id="Structure" order="1" sideWeight="0.38244852" side_tool="true" weight="0.19722815" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -599,8 +572,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.44637054" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.37486458" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49946696" weight="0.18418202" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.37486458" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
@@ -687,33 +660,21 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/application/Main.java</url>
-          <line>51</line>
-          <properties />
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
-          <line>86</line>
+          <line>88</line>
           <properties />
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
-          <line>199</line>
+          <line>204</line>
           <properties />
           <option name="timeStamp" value="43" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
-          <line>84</line>
-          <properties />
-          <option name="timeStamp" value="44" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
-          <line>357</line>
+          <line>362</line>
           <properties />
           <option name="timeStamp" value="47" />
         </line-breakpoint>
@@ -723,27 +684,72 @@
           <properties />
           <option name="timeStamp" value="50" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/application/Main.java</url>
-          <line>50</line>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>349</line>
           <properties />
-          <option name="timeStamp" value="51" />
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>86</line>
+          <properties />
+          <option name="timeStamp" value="59" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>202</line>
+          <properties />
+          <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>401</line>
+          <properties />
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>496</line>
+          <properties />
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/expression/Frame.java</url>
+          <line>38</line>
+          <properties />
+          <option name="timeStamp" value="70" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/application/Main.java</url>
-          <line>48</line>
+          <line>52</line>
           <properties />
-          <option name="timeStamp" value="52" />
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/application/Main.java</url>
+          <line>58</line>
+          <properties />
+          <option name="timeStamp" value="72" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/application/Main.java</url>
+          <line>57</line>
+          <properties />
+          <option name="timeStamp" value="73" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/parser/Parser.java</url>
+          <line>217</line>
+          <properties />
+          <option name="timeStamp" value="74" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
-        <watch expression="token.getType()" language="JAVA" />
         <watch expression="scope" language="JAVA" />
-        <watch expression="token.string_value" language="JAVA" />
-        <watch expression="value" language="JAVA" />
-        <watch expression="expr" language="JAVA" />
+        <watch expression="id_value" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -798,17 +804,7 @@
     </expressions>
     <expressions id="watch">
       <expression>
-        <expression-string>postfix(scope)</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>expr</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>value</expression-string>
+        <expression-string>id_value</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -818,32 +814,37 @@
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>token.string_value</expression-string>
+        <expression-string>binding.replace(id, value)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>token.getType()</expression-string>
+        <expression-string>binding.containsKey(id)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>valued_args</expression-string>
+        <expression-string>bind</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>e.eval(env)</expression-string>
+        <expression-string>id</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>e</expression-string>
+        <expression-string>tokenizer.next()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>exprList</expression-string>
+        <expression-string>next();</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>args(scope)</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
@@ -908,9 +909,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="44" selection-start-line="18" selection-start-column="44" selection-end-line="18" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -918,10 +916,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
           <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-          <folding>
-            <element signature="e#1139#1140#0" expanded="true" />
-            <element signature="e#1160#1161#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -936,9 +930,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="30" column="33" selection-start-line="30" selection-start-column="33" selection-end-line="30" selection-end-column="33" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -953,10 +944,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="16" selection-start-line="3" selection-start-column="16" selection-end-line="3" selection-end-column="16" />
-          <folding>
-            <element signature="e#430#431#0" expanded="true" />
-            <element signature="e#472#473#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -978,10 +965,77 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="459">
           <caret line="29" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Env.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/BinaryExpr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/FunExpr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="634">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Expr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/SeqExpr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#395#396#0" expanded="true" />
-            <element signature="e#422#423#0" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/SetVarExpr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/NilVal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#378#379#0" expanded="true" />
+            <element signature="e#409#410#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Val.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+          <folding>
+            <element signature="e#1214#1215#0" expanded="true" />
+            <element signature="e#1241#1242#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -998,112 +1052,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/parser/ExprList.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Env.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/BinaryExpr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/FunExpr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#601#602#0" expanded="true" />
-            <element signature="e#649#650#0" expanded="true" />
-            <element signature="e#679#680#0" expanded="true" />
-            <element signature="e#706#707#0" expanded="true" />
-            <element signature="e#775#776#0" expanded="true" />
-            <element signature="e#815#816#0" expanded="true" />
-            <element signature="e#844#845#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Expr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Val.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-          <folding>
-            <element signature="e#1214#1215#0" expanded="true" />
-            <element signature="e#1241#1242#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/NilVal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#378#379#0" expanded="true" />
-            <element signature="e#409#410#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/Scope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#611#612#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/tokenizer/Tokenizer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="146" selection-start-line="146" selection-end-line="146" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/SetVarExpr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="204">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tokenizer/Token.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
+        <state relative-caret-position="413">
           <caret line="89" selection-start-line="89" selection-end-line="89" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1118,21 +1074,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/SeqExpr.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/tokenizer/Tokenizer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="424">
+          <caret line="60" column="27" lean-forward="true" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#5795#5796#0" expanded="true" />
+            <element signature="e#5846#5847#0" expanded="true" />
+            <element signature="e#13295#13296#0" expanded="true" />
+            <element signature="e#13327#13328#0" expanded="true" />
+            <element signature="e#13364#13365#0" expanded="true" />
+            <element signature="e#13398#13399#0" expanded="true" />
+            <element signature="e#14161#14162#0" expanded="true" />
+            <element signature="e#14206#14207#0" expanded="true" />
+            <element signature="e#14250#14251#0" expanded="true" />
+            <element signature="e#14294#14295#0" expanded="true" />
+            <element signature="e#14337#14338#0" expanded="true" />
+            <element signature="e#14384#14385#0" expanded="true" />
+            <element signature="e#14427#14428#0" expanded="true" />
+            <element signature="e#14470#14471#0" expanded="true" />
+            <element signature="e#14518#14519#0" expanded="true" />
+            <element signature="e#14549#14550#0" expanded="true" />
+            <element signature="e#14595#14596#0" expanded="true" />
+            <element signature="e#14626#14627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Frame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/application/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="53" column="53" selection-start-line="53" selection-start-column="53" selection-end-line="53" selection-end-column="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/parser/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        <state relative-caret-position="175">
+          <caret line="217" selection-start-line="217" selection-end-line="217" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#396#397#0" expanded="true" />
@@ -1147,22 +1140,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/parser/expression/Frame.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/Scope.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/application/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="392">
-          <caret line="50" column="10" selection-start-line="50" selection-start-column="10" selection-end-line="50" selection-end-column="10" />
-          <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#611#612#0" expanded="true" />
           </folding>
         </state>
       </provider>

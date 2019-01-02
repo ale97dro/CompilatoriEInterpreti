@@ -39,6 +39,6 @@ public class Frame {
         if(binding.containsKey(id))
             binding.replace(id, value);
 
-        throw new EvalException("add");
+        //throw new EvalException("add");
     }
 }

@@ -22,6 +22,8 @@ public class Tokenizer {
     private Token current = null;
     private Token previous; //TODO: implementare get e assegnamento
     private boolean previousMode = false;
+    private boolean previousToken = false;
+    private Token skipped = null;
 
     public char getC(){return toChar(c);}
 
@@ -35,6 +37,8 @@ public class Tokenizer {
     {
         //return previous;
         previousMode = true;
+        skipped = current;
+       // previousToken = true;
     }
 
     public Token next() throws IOException {
@@ -47,6 +51,14 @@ public class Tokenizer {
         {
             previousMode = false;
             return previous;
+        }
+
+        if(skipped != null)
+        {
+            previous = current;
+            current = skipped;
+            skipped = null;
+            return current;
         }
 
         previous = current;

@@ -34,6 +34,8 @@ public class Parser
 
     private void previous() throws IOException {
         tokenizer.previous();
+        token = tokenizer.next(); //todo: modificato oggi, ottengo il vecchio valore
+
     }
 
     public Expr execute() throws ParserException, IOException //==program
@@ -140,8 +142,11 @@ public class Parser
         //Controllo se esiste nello scope: se esiste, exception
         //se non esiste, ritorno il nome del token
 
-        checkAndNext(Type.ID, tokenType());
-        return token.getStringValue();
+        //checkAndNext(Type.ID, tokenType());
+        check(Type.ID, tokenType());
+        String value = token.getStringValue();
+        next();
+        return value;
     }
 
     //todo: ritona lista?
@@ -246,7 +251,7 @@ public class Parser
 
     private void checkInScope(Scope scope, String id_value) throws ParserException
     {
-        if(scope.checkInScope(id_value))
+        if(!scope.checkInScope(id_value)) //TODO qui prima era senza !
             throw new ParserException("Error");
     }
 
