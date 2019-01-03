@@ -55,7 +55,7 @@ public class Parser
 
     private void checkAndNext(Type expected, Type actual) throws ParserException, IOException {
         if(expected != actual)
-            throw new ParserException("Parsing error");
+            throw new ParserException("Parsing error: " + expected + ", " + actual);
         next();
     }
 
@@ -82,7 +82,7 @@ public class Parser
         List<String> params_and_locals = new ArrayList<>(params);
         params_and_locals.addAll(locals);
 
-        scope = new Scope(null, params_and_locals);
+        scope = new Scope(scope, params_and_locals);
 
         Expr expr = optSequence(scope);
 

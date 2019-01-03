@@ -33,6 +33,7 @@ public class Main {
         program="{->print(4+5, \" ciao\");}";
         program = "{->print(\"Hello World\");}";
         program = "{x y-> x=5; y = x+1; print(x);}";
+        //program = "{->println();}";
 
         String path = "D:\\alex2\\Desktop\\funny.txt";
 
@@ -50,7 +51,7 @@ public class Main {
 
 
 
-        //Expr parsata = new Parser(new StringReader(program)).execute();
+       // Expr parsata = new Parser(new StringReader(program)).execute();
         Expr parsata = new Parser(new FileReader(path)).execute();
 
 

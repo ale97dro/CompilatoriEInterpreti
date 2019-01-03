@@ -8,6 +8,7 @@ import java.util.Map;
 public class Scope
 {
     //private Map<String, Integer> ids;
+    private Scope upScope;
     private List<String> scope;
 
     public Scope(Scope scope, List<String> params)
@@ -19,13 +20,22 @@ public class Scope
         this.scope = new ArrayList<>();
 
         if(scope != null)
-            this.scope.addAll(scope.getScope());
+            this.upScope = scope;
+            //this.scope.addAll(scope.getScope());
         this.scope.addAll(params);
     }
 
     public boolean checkInScope(String id)
     {
-        return scope.contains(id);
+        //return scope.contains(id);
+
+        if(scope.contains(id))
+            return true;
+        else
+            if(upScope != null)
+                return upScope.checkInScope(id);
+            else
+                return false;
     }
 
     public List<String> getScope()
