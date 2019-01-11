@@ -48,6 +48,25 @@ public abstract class Val extends Expr{
         throw new EvalException("Plus");
     }
 
+    public Val greater(Val args) throws EvalException {
+        throw new EvalException("Greater");
+    }
+
+    public Val greaterEquals(Val args) throws EvalException {
+        throw new EvalException("GreaterEquals");
+    }
+
+    public Val less(Val args) throws EvalException {
+        throw new EvalException("Less");
+    }
+
+    public Val lessEquals(Val args) throws EvalException {
+        throw new EvalException("LessEquals");
+    }
+
+    public Val equals(Val args) throws EvalException {
+        throw new EvalException("Equals");
+    }
 
     @Override
     public Val eval(Env env) {

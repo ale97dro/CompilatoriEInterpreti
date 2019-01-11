@@ -1,6 +1,7 @@
 package parser.expression;
 
 import parser.EvalException;
+import tokenizer.Type;
 
 import java.math.BigDecimal;
 
@@ -45,6 +46,41 @@ public class NumVal extends Val {
     @Override
     public Val module(Val arg) throws EvalException {
         return new NumVal(number.remainder(arg.checkNum().number));
+    }
+
+    @Override
+    public Val greater(Val args) throws EvalException {
+        if(this.number.compareTo(args.checkNum().number) > 0)
+            return new BoolVal(Type.TRUE);
+        return new BoolVal(Type.FALSE);
+    }
+
+    @Override
+    public Val greaterEquals(Val args) throws EvalException {
+        if(this.number.compareTo(args.checkNum().number) >= 0)
+            return new BoolVal(Type.TRUE);
+        return new BoolVal(Type.FALSE);
+    }
+
+    @Override
+    public Val less(Val args) throws EvalException {
+        if(this.number.compareTo(args.checkNum().number) < 0)
+            return new BoolVal(Type.TRUE);
+        return new BoolVal(Type.FALSE);
+    }
+
+    @Override
+    public Val lessEquals(Val args) throws EvalException {
+        if(this.number.compareTo(args.checkNum().number) <= 0)
+            return new BoolVal(Type.TRUE);
+        return new BoolVal(Type.FALSE);
+    }
+
+    @Override
+    public Val equals(Val args) throws EvalException {
+        if(this.number.compareTo(args.checkNum().number) == 0)
+            return new BoolVal(Type.TRUE);
+        return new BoolVal(Type.FALSE);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class PrintExpr extends Expr {
         StringBuilder stringBuilder = new StringBuilder();
 
         for(Val v : valued_args)
-            stringBuilder.append(v.toString());
+            stringBuilder.append(v.eval(env).toString());
 
         if(printType == Type.PRINT)
             System.out.print(stringBuilder.toString());

@@ -36,14 +36,15 @@ public class IfExpr extends Expr {
         if(type == Type.AND || type == Type.OR)
         {
             BoolVal eval1 = condition.eval(env).checkBool();
-            BoolVal eval2 = then.eval(env).checkBool();
+            //BoolVal eval2 = then.eval(env).checkBool();
 
             //TODO implementa
             switch(type)
             {
                 case AND: //se entrambe le condizioni sono vere, torno vero
-
+                    return (then.eval(env).checkBool().getValue() == Type.TRUE && eval1.checkBool().getValue() == Type.TRUE) ? new BoolVal(Type.TRUE) : new BoolVal(Type.FALSE);
                 case OR: //se almeno una condizione è vera, torno vero
+                    return (then.eval(env).checkBool().getValue() == Type.TRUE || eval1.checkBool().getValue() == Type.TRUE) ? new BoolVal(Type.TRUE) : new BoolVal(Type.FALSE);
             }
 
         }

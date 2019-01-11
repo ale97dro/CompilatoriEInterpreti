@@ -55,7 +55,7 @@ public class Parser
 
     private void checkAndNext(Type expected, Type actual) throws ParserException, IOException {
         if(expected != actual)
-            throw new ParserException("Parsing error: " + expected + ", " + actual);
+            throw new ParserException("Parsing error: expected " + expected + ", find " + actual);
         next();
     }
 
@@ -166,6 +166,11 @@ public class Parser
 
             //expr = new SeqExpr(expr, optAssignment(scope)); //cosa devo mettere dentro sequence? lista di assignment
         }
+
+        if(exprList.size() == 0)
+            return NilVal.instance();
+        if(exprList.size() == 1)
+            return exprList.get(0);
 
         return new SeqExpr(exprList);
         //return nil;
@@ -363,7 +368,10 @@ public class Parser
         checkAndNext(Type.TONDAOPEN, token.getType());
 
         if(token.getType() == Type.TONDACLOSE)
+        {
+            next();
             return list;
+        }
 
         list.add(sequence(scope));
 
@@ -501,7 +509,12 @@ public class Parser
         throw new ParserException("Parsing error");
     }
 
-    private Expr getSubSequence(Scope scope) {
-        return null;
+    private Expr getSubSequence(Scope scope) throws IOException, ParserException {
+        Expr expr = null;
+        checkAndNext(Type.TONDAOPEN, token.getType());
+        expr = sequence(scope);
+        checkAndNext(Type.TONDACLOSE, token.getType());
+
+        return expr;
     }
 }

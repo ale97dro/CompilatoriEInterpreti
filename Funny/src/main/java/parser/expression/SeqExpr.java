@@ -34,10 +34,10 @@ public class SeqExpr extends Expr {
 
     @Override
     public Val eval(Env env) throws EvalException {
-        //return null; //TODO implementare
+        //return null;
 
         for(Expr e : exprList)
-            return e.eval(env);
+            e.eval(env);
 
         return NilVal.instance();
     }

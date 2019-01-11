@@ -33,6 +33,16 @@ public class BinaryExpr extends Expr {
                 return lval.division(rval);
             case PERCENTAGE:
                 return lval.module(rval);
+            case GREATER:
+                return lval.greater(rval);
+            case GREATEREQUAL:
+                return lval.greaterEquals(rval);
+            case LESS:
+                return lval.less(rval);
+            case LESSEQUAL:
+                return lval.lessEquals(rval);
+            case EQUAL:
+                return lval.equals(rval);
             default:
                 throw new EvalException("Binary");
         }
