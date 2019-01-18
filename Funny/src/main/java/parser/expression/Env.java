@@ -25,8 +25,14 @@ public class Env
         return value;
     }
 
-    public void setVal(String id, Val value) throws EvalException
+    public void setVal(String id, Val value)
     {
-        frame.addValue(id, value);
+        try {
+            frame.addValue(id, value);
+        }
+        catch (EvalException ex)
+        {
+            enclosing.setVal(id, value);
+        }
     }
 }

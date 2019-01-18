@@ -24,14 +24,16 @@ public class ExprList {
 
     public List<Val> eval(Env env)
     {
-        return list.stream().map(expr-> {
-            try {
-                return expr.eval(env);
-            } catch (EvalException e) {
-                //e.printStackTrace();
-                return NilVal.instance();
-            }
-        }).collect(Collectors.toList());
+//        return list.stream().map(expr-> {
+//            try {
+//                return expr.eval(env);
+//            } catch (EvalException e) {
+//                //e.printStackTrace();
+//
+//            }
+//        }).collect(Collectors.toList());
+
+        return list.stream().map(expr -> expr.eval(env)).collect(Collectors.toList());
     }
 
     public List<Expr> toList()

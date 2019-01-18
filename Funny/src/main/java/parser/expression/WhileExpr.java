@@ -18,7 +18,7 @@ public class WhileExpr extends Expr
     @Override
     public Val eval(Env env) throws EvalException
     {
-        BoolVal eval = cond.eval(env).checkBool();
+        //BoolVal eval = cond.eval(env).checkBool();
 
         if(type == Type.WHILE)
             while(cond.eval(env).checkBool().getValue() == Type.TRUE)

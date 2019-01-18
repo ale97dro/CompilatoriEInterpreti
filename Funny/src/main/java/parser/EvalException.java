@@ -1,6 +1,6 @@
 package parser;
 
-public class EvalException extends Exception {
+public class EvalException extends RuntimeException {
 
     public EvalException(String message)
     {

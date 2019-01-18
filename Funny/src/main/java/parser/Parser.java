@@ -152,14 +152,19 @@ public class Parser
     {
         List<Expr> exprList = new ArrayList<>();
 
-        exprList.add(optAssignment(scope));
+        Expr temp = optAssignment(scope);
+
+        if(temp != null)
+            exprList.add(temp);
 
         //Expr expr = optAssignment(scope);
 
         while(isOptAssignment(tokenType()))
         {
             next();
-            exprList.add(optAssignment(scope));
+            temp = optAssignment(scope);
+            if(temp != null)
+                exprList.add(temp);
             //expr = optAssignment(scope);
 
             //expr = new SeqExpr(expr, optAssignment(scope)); //cosa devo mettere dentro sequence? lista di assignment
@@ -181,7 +186,7 @@ public class Parser
         if(isAssignment())
             return assignment(scope);
         else
-            return nil;
+            return null;
     }
 
     private boolean isAssignment()
@@ -224,7 +229,7 @@ public class Parser
             {
                 Type operator = token.getType();
                 next(); //mangio token dell'operatore
-                return new SetVarExpr(id_value, operator, assignment(scope)); //todo: questa setvarexpr deve diventare una binary: trasforma x+=5 in x = x + 5
+                return new SetVarExpr(id_value, assignment(scope)); //todo: questa setvarexpr deve diventare una binary: trasforma x+=5 in x = x + 5
             }
             else
             {
