@@ -24,7 +24,6 @@ public class Frame {
             binding.put(s, NilVal.instance());
     }
 
-    //TODO: implementa metodi per rcuperare i valori della mappa
 
     public Val getValue(String id) throws EvalException
     {
@@ -38,7 +37,7 @@ public class Frame {
     {
         if(binding.containsKey(id))
             binding.replace(id, value);
-
-        //throw new EvalException("add");
+        else
+            throw new EvalException("Frame");
     }
 }

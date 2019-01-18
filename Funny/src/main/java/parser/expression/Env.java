@@ -14,7 +14,6 @@ public class Env
     }
 
 
-    //todo implementa metodi per recuperare i valori
 
     public Val getVal(String id) throws EvalException
     {

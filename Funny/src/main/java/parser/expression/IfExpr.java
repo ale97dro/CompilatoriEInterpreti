@@ -36,17 +36,18 @@ public class IfExpr extends Expr {
         if(type == Type.AND || type == Type.OR)
         {
             BoolVal eval1 = condition.eval(env).checkBool();
-            //BoolVal eval2 = then.eval(env).checkBool();
 
-            //TODO implementa
             switch(type)
             {
-                case AND: //se entrambe le condizioni sono vere, torno vero
-                    return (then.eval(env).checkBool().getValue() == Type.TRUE && eval1.checkBool().getValue() == Type.TRUE) ? new BoolVal(Type.TRUE) : new BoolVal(Type.FALSE);
-                case OR: //se almeno una condizione è vera, torno vero
-                    return (then.eval(env).checkBool().getValue() == Type.TRUE || eval1.checkBool().getValue() == Type.TRUE) ? new BoolVal(Type.TRUE) : new BoolVal(Type.FALSE);
+                case AND:
+                    if(eval1.getValue() == Type.FALSE)
+                        return new BoolVal(Type.FALSE);
+                    return then.eval(env).checkBool();
+                case OR:
+                    if(eval1.getValue() == Type.TRUE)
+                        return new BoolVal(Type.TRUE);
+                    return then.eval(env).checkBool();
             }
-
         }
         else
         {
@@ -55,26 +56,25 @@ public class IfExpr extends Expr {
                 BoolVal eval_condition = condition.eval(env).checkBool();
 
                 if(eval_condition.getValue() == Type.TRUE && type == Type.IF)
-                    then.eval(env);
+                    return then.eval(env);
 
                 if(eval_condition.getValue() == Type.FALSE && type == Type.IF)
                     if(_else != null)
-                        _else.eval(env);
+                        return _else.eval(env);
                     else
-                        NilVal.instance();
+                        return NilVal.instance();
 
                 if(eval_condition.getValue() == Type.TRUE && type == Type.IFNOT)
                     if(_else != null)
-                        _else.eval(env);
+                        return _else.eval(env);
                     else
-                        NilVal.instance();
+                        return NilVal.instance();
 
                 if(eval_condition.getValue() == Type.FALSE && type == Type.IFNOT)
-                    then.eval(env);
+                    return then.eval(env);
             }
         }
 
-        //throw new EvalException("If expression");
         return NilVal.instance();
     }
 }

@@ -55,7 +55,7 @@ public class Main {
         Expr parsata = new Parser(new FileReader(path)).execute();
 
 
-        System.out.println("ciao");
+        //System.out.println("ciao");
         parsata.eval(null).checkClosure().apply(new ArrayList<>());
         //System.out.println("Ok");
 

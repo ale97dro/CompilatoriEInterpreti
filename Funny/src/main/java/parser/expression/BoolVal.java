@@ -16,6 +16,11 @@ public class BoolVal extends Val {
         return boolType;
     }
 
+    public BoolVal invert()
+    {
+        return boolType == Type.TRUE ? new BoolVal(Type.FALSE) : new BoolVal(Type.TRUE);
+    }
+
     @Override
     public BoolVal checkBool() throws EvalException {
         return this;

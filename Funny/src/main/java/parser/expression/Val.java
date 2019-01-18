@@ -1,6 +1,7 @@
 package parser.expression;
 
 import parser.EvalException;
+import tokenizer.Type;
 
 public abstract class Val extends Expr{
     public Val() { }
@@ -29,7 +30,8 @@ public abstract class Val extends Expr{
 
 
     public Val plus(Val arg) throws EvalException {
-        throw new EvalException("Plus");
+        //throw new EvalException("Plus");
+        return new StringVal(this.toString()+arg.checkString().getValue());
     }
 
     public Val minus(Val arg) throws EvalException {
@@ -64,8 +66,8 @@ public abstract class Val extends Expr{
         throw new EvalException("LessEquals");
     }
 
-    public Val equals(Val args) throws EvalException {
-        throw new EvalException("Equals");
+    public Val equalsEquals(Val args) throws EvalException {
+        return this.equals(args) ? new BoolVal(Type.TRUE) : new BoolVal(Type.FALSE);
     }
 
     @Override

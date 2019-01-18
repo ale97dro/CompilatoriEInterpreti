@@ -5,13 +5,10 @@ import java.io.IOException;
 import java.io.Reader;
 import java.math.BigDecimal;
 
-/*TODO:
-    mancano commenti inline e annidati, numeri con notazione scientifica
+/*TODO: mancano commenti inline e annidati, numeri con notazione scientifica
 */
 /*
-    lista con parole chiave; la confronto //TODO: pensare a mettere in una mappa anche i token semplici
-    //TODO: gestire meglio il set del flag token_ready
-    //TODO: 5+10 deve essere un unico token
+    lista con parole chiave; la confronto
  */
 public class Tokenizer {
 
@@ -20,7 +17,7 @@ public class Tokenizer {
     private StringBuilder str_builder;
     private boolean token_ready;
     private Token current = null;
-    private Token previous; //TODO: implementare get e assegnamento
+    private Token previous;
     private boolean previousMode = false;
     private boolean previousToken = false;
     private Token skipped = null;
@@ -43,8 +40,8 @@ public class Tokenizer {
 
     public Token next() throws IOException {
         /*
-            TODO: saltare gli spazi bianchi
-            TODO: i commenti vanno saltati
+            saltare gli spazi bianchi
+            i commenti vanno saltati
          */
 
         if(previousMode)
@@ -87,7 +84,7 @@ public class Tokenizer {
                     tokenReady();
                     break;
                 case '/':
-                    slash(); //TODO: sistemare questa roba
+                    slash();
                     break;
                 case '%':
                     percentage();

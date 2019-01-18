@@ -4,6 +4,7 @@ import parser.EvalException;
 import tokenizer.Type;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
 
 public class NumVal extends Val {
     private BigDecimal number;
@@ -40,7 +41,13 @@ public class NumVal extends Val {
 
     @Override
     public Val division(Val arg) throws EvalException {
-        return new NumVal(number.divide(arg.checkNum().number));
+        try {
+            return new NumVal(number.divide(arg.checkNum().number));
+        }
+        catch (ArithmeticException ex)
+        {
+            return new NumVal(number.divide(arg.checkNum().number, MathContext.DECIMAL32));
+        }
     }
 
     @Override
@@ -77,7 +84,7 @@ public class NumVal extends Val {
     }
 
     @Override
-    public Val equals(Val args) throws EvalException {
+    public Val equalsEquals(Val args) throws EvalException {
         if(this.number.compareTo(args.checkNum().number) == 0)
             return new BoolVal(Type.TRUE);
         return new BoolVal(Type.FALSE);

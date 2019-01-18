@@ -34,7 +34,7 @@ public class Parser
 
     private void previous() throws IOException {
         tokenizer.previous();
-        token = tokenizer.next(); //todo: modificato oggi, ottengo il vecchio valore
+        token = tokenizer.next();
 
     }
 
@@ -137,7 +137,6 @@ public class Parser
     }
 
     private String id(Scope scope) throws ParserException, IOException {
-        //TODO immagino di dover ritornare il nodo con il token id
 
         //Controllo se esiste nello scope: se esiste, exception
         //se non esiste, ritorno il nome del token
@@ -149,7 +148,6 @@ public class Parser
         return value;
     }
 
-    //todo: ritona lista?
     private Expr sequence(Scope scope) throws IOException, ParserException
     {
         List<Expr> exprList = new ArrayList<>();
@@ -214,8 +212,8 @@ public class Parser
     }
 
     private Expr assignment(Scope scope) throws ParserException, IOException {
-        //TODO: controllo se il tipo è id o logicalOr; se uno di questi chiamo sotto parser altrimenti ritorno null
-        //TODO: se non ho id, logicalOr
+        // controllo se il tipo è id o logicalOr; se uno di questi chiamo sotto parser altrimenti ritorno null
+        // se non ho id, logicalOr
         //se ho id, devo controllare anche il carattere dopo: se è uno dei 5, allora poi dopo ho assignment altrimenti logicalOr
         if(isId(token.getType()))
         {
@@ -256,7 +254,7 @@ public class Parser
 
     private void checkInScope(Scope scope, String id_value) throws ParserException
     {
-        if(!scope.checkInScope(id_value)) //TODO qui prima era senza !
+        if(!scope.checkInScope(id_value))
             throw new ParserException("Error");
     }
 
@@ -343,11 +341,11 @@ public class Parser
         {
             Type operation = token.getType();
             next();
-            return new UnaryExpr(operation, unary(scope));
+            return new expression.UnaryExpr(operation, unary(scope));
         }
         else
         {
-            return postfix(scope); //todo ritorna qualche oggetto istanzito qui?
+            return postfix(scope);
         }
     }
 
