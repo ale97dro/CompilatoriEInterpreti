@@ -17,4 +17,8 @@ public class AssocExpr extends Expr{
     public Expr getValue() {
         return value;
     }
+
+    public void setReference(LabelsContainer container) {
+        value.setReference(container);
+    }
 }

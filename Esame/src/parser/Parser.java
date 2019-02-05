@@ -49,9 +49,12 @@ public class Parser
 
     public Expr parse() throws IOException, ParserException {
         next();
-        Expr expr = value(new LabelsContainer());
+        LabelsContainer container = new LabelsContainer();
+        Expr expr = value(container);
         check(Type.EOS, token.getType());
 
+
+        expr.setReference(container);
         return expr;
     }
 
@@ -172,14 +175,18 @@ public class Parser
     {
         checkAndNext(Type.FRECCIA, token.getType());
         check(Type.ID, token.getType());
-        //Con questa implementazione, non è possibile cercare
-        Expr expression = container.get(token.getValue());
 
+
+        Expr expr = new RefExpr(token.getValue());
         next();
-        if(expression == null)
-            return NilVal.instance();
-        else
-            return expression;
+        return expr;
+//        Expr expression = container.get(token.getValue());
+//
+//        next();
+//        if(expression == null)
+//            return NilVal.instance();
+//        else
+//            return expression;
     }
 
 

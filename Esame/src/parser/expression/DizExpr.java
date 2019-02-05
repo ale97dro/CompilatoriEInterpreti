@@ -8,4 +8,9 @@ public class DizExpr extends Expr{
     public DizExpr(List<Expr> assocList) {
         this.assocList = assocList;
     }
+
+    public void setReference(LabelsContainer container) {
+        for(Expr e : assocList)
+            e.setReference(container);
+    }
 }

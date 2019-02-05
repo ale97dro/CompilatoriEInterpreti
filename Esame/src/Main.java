@@ -14,7 +14,7 @@ public class Main {
 
         //String program = "# xy { nome: \"Pierre\";}";
        // String program = "{ ; nome: #nome \"Pierre\"; }";
-        String program = "#a [ # xy { nome: \"Pierre\"; }, # xx{ nome: \"Heloise\" ; amante:-> xy; test:-> p; }, ->xx ]";
+        String program = "#a [ # xy { nome: \"Pierre\"; }, # xx{ nome: \"Heloise\" ; amante:-> xy; }, ->a ]";
 
         Tokenizer tokenizer = new Tokenizer(new StringReader("[ # xy { nome: \"Pierre\"; amante:->xx}, # xx{ nome: \"Heloise\" ; amante: -> xy}, ]"));
 

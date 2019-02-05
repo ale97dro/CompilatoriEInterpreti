@@ -9,4 +9,10 @@ public class VecExpr extends Expr {
     public VecExpr(List<Expr> expressions) {
         this.expressionList = expressions;
     }
+
+    public void setReference(LabelsContainer container) {
+        for(Expr e : expressionList)
+            e.setReference(container);
+
+    }
 }
