@@ -172,6 +172,7 @@ public class Parser
     {
         checkAndNext(Type.FRECCIA, token.getType());
         check(Type.ID, token.getType());
+        //Con questa implementazione, non è possibile cercare
         Expr expression = container.get(token.getValue());
 
         next();
